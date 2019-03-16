@@ -50,6 +50,15 @@ namespace DataManager
             }
             return true;
         }
+        public static bool TestUploadWRF(string date, string run)
+        {
+            Process cmd = new Process();
+            cmd.StartInfo.FileName = @"cmd.exe";
+            cmd.StartInfo.Arguments = @"/C " + "python " + resource.testUploadWRF + " " + date + run;
+            cmd.Start();
+            cmd.WaitForExit();
+            return true;
+        }
         public static string twoDigitNumber(int _num)
         {
             if (_num < 10)
@@ -184,6 +193,9 @@ namespace DataManager
             publishWRF();
             Console.WriteLine("Publishing New Services: \n \t Status:  Started.");
             publishWRF("APCP");
+
+            Console.WriteLine("TEST UPLOAD WRF...");
+            TestUploadWRF(date, run);
 
             FileInfo[] tiffFiles = new DirectoryInfo(resource.wrfTempDir).GetFiles("*.tif", SearchOption.AllDirectories).Select(fn => new FileInfo(fn.FullName)).OrderBy(f => f.Name).ToArray();
 

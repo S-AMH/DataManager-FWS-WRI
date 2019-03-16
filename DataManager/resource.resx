@@ -377,4 +377,7 @@
   <data name="uploadWRFAPCP" xml:space="preserve">
     <value>C:\FWS\DB\WebGIS\UploadWRF-APCP.py</value>
   </data>
+  <data name="testUploadWRF" xml:space="preserve">
+    <value>C:\FWS\DB\WebGIS-test\UploadWRF.py</value>
+  </data>
 </root>

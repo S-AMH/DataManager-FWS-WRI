@@ -343,11 +343,10 @@ namespace DataManager
                 //string apcpSum12hr = extractFileNamesGFS0p13(_date, _run, "APCP-12hr", "3hr");
                 //string apcpSum24hr = extractFileNamesGFS0p13(_date, _run, "APCP-24hr", "3hr");
                 string apcp3hr = extractFileNamesGFS0p13(_date, _run, "APCP", "3hr");
-
                 //runSagaCommandZonalForPointsGFS0p13(apcp1hr, _date, _run, "1hr", "APCP", resource._1_SHAPE_FILE_);
-                runSagaCommandZonalForPointsGFS0p13(apcp3hr, _date, _run, "3hr", "APCP", resource._1_SHAPE_FILE_);
+                var t11 = Task.Factory.StartNew( () =>  runSagaCommandZonalForPointsGFS0p13(apcp3hr, _date, _run, "3hr", "APCP", resource._1_SHAPE_FILE_));
                 //runSagaCommandZonalForPointsGFS0p13(apcp1hr, _date, _run, "1hr", "APCP", resource._3_SHAPE_FILE_);
-                runSagaCommandZonalForPointsGFS0p13(apcp3hr, _date, _run, "3hr", "APCP", resource._3_SHAPE_FILE_);
+                var t22= Task.Factory.StartNew( () => runSagaCommandZonalForPointsGFS0p13(apcp3hr, _date, _run, "3hr", "APCP", resource._3_SHAPE_FILE_));
                 //runSagaCommandZonalForPointsGFS0p13(apcp1hr, _date, _run, "1hr", "APCP", resource._4_SHAPE_FILE_);
                 //runSagaCommandZonalForPointsGFS0p13(apcp3hr, _date, _run, "3hr", "APCP", resource._4_SHAPE_FILE_);
                 //runSagaCommandZonalForPointsRainSum_12_24GFS0p13(apcpSum12hr, _date, _run, "3hr", "APCP-12hr", resource._1_SHAPE_FILE_, "12hr");
@@ -362,13 +361,13 @@ namespace DataManager
                 //runSagaCommandZonalForPointsRainSum_12_24GFS0p13(apcpSum24hr, _date, _run, "3hr", "APCP-24hr", resource._4_SHAPE_FILE_, "24hr");
                 //runSagaCommandZonalForPointsRainSum_12_24GFS0p13(apcpSum24hr, _date, _run, "3hr", "APCP", resource._4_SHAPE_FILE_, "ALL");
                 //runSagaCommandZonalForPointsRainSum_12_24GFS0p13(apcpSum24hr, _date, _run, "1hr", "APCP", resource._4_SHAPE_FILE_, "ALL");
-
+                Task.WaitAll(new Task[] { t11, t22 });
                 return true;
             }
 
             //runSagaCommandZonalForPointsGFS0p13(rain1hr, _date, _run, "1hr", "RAIN", resource._1_SHAPE_FILE_);
             //runSagaCommandZonalForPointsGFS0p13(temp1hr, _date, _run, "1hr", "TEMP", resource._1_SHAPE_FILE_);
-            runSagaCommandZonalForPointsGFS0p13(rain3hr, _date, _run, "3hr", "RAIN", resource._1_SHAPE_FILE_);
+            var t1 = Task.Factory.StartNew( () => runSagaCommandZonalForPointsGFS0p13(rain3hr, _date, _run, "3hr", "RAIN", resource._1_SHAPE_FILE_));
             //runSagaCommandZonalForPointsGFS0p13(temp3hr, _date, _run, "3hr", "TEMP", resource._1_SHAPE_FILE_);
             //runSagaCommandZonalForPointsRainSum_12_24GFS0p13(rainSum12hr, _date, _run, "3hr", "RAIN-12hr", resource._1_SHAPE_FILE_, "12hr");
             //runSagaCommandZonalForPointsRainSum_12_24GFS0p13(rainSum24hr, _date, _run, "3hr", "RAIN-24hr", resource._1_SHAPE_FILE_, "24hr");
@@ -376,7 +375,7 @@ namespace DataManager
             //runSagaCommandZonalForPointsRainSum_12_24GFS0p13(rainSum24hr, _date, _run, "1hr", "RAIN", resource._1_SHAPE_FILE_, "ALL");
             //runSagaCommandZonalForPointsGFS0p13(rain1hr, _date, _run, "1hr", "RAIN", resource._3_SHAPE_FILE_);
             //runSagaCommandZonalForPointsGFS0p13(temp1hr, _date, _run, "1hr", "TEMP", resource._3_SHAPE_FILE_);
-            runSagaCommandZonalForPointsGFS0p13(rain3hr, _date, _run, "3hr", "RAIN", resource._3_SHAPE_FILE_);
+            var t2 = Task.Factory.StartNew( () => runSagaCommandZonalForPointsGFS0p13(rain3hr, _date, _run, "3hr", "RAIN", resource._3_SHAPE_FILE_));
             //runSagaCommandZonalForPointsGFS0p13(temp3hr, _date, _run, "3hr", "TEMP", resource._3_SHAPE_FILE_);
             //runSagaCommandZonalForPointsRainSum_12_24GFS0p13(rainSum12hr, _date, _run, "3hr", "RAIN-12hr", resource._3_SHAPE_FILE_, "12hr");
             //runSagaCommandZonalForPointsRainSum_12_24GFS0p13(rainSum24hr, _date, _run, "3hr", "RAIN-24hr", resource._3_SHAPE_FILE_, "24hr");
@@ -390,7 +389,7 @@ namespace DataManager
             //runSagaCommandZonalForPointsRainSum_12_24GFS0p13(rainSum24hr, _date, _run, "3hr", "RAIN-24hr", resource._4_SHAPE_FILE_, "24hr");
             //runSagaCommandZonalForPointsRainSum_12_24GFS0p13(rainSum24hr, _date, _run, "3hr", "RAIN", resource._4_SHAPE_FILE_, "ALL");
             //runSagaCommandZonalForPointsRainSum_12_24GFS0p13(rainSum24hr, _date, _run, "1hr", "RAIN", resource._4_SHAPE_FILE_, "ALL");
-
+            Task.WaitAll(new Task[] { t1, t2 });
             return true;
         }
         public static bool zonalForPointsWRF(string _date, string _run, string _variable = "RAIN")
@@ -403,45 +402,47 @@ namespace DataManager
                 if (_variable == "APCP")
                 {
                     string apcp3hr = extractFileNamesWRF0p11(_date, _run, modelName[i], "APCP", "3hr");
-                    string apcpSum12hr = extractFileNamesWRF0p11(_date, _run, modelName[i], "APCP-12hr", "3hr");
-                    string apcpSum24hr = extractFileNamesWRF0p11(_date, _run, modelName[i], "APCP-24hr", "3hr");
+                    //string apcpSum12hr = extractFileNamesWRF0p11(_date, _run, modelName[i], "APCP-12hr", "3hr");
+                    //string apcpSum24hr = extractFileNamesWRF0p11(_date, _run, modelName[i], "APCP-24hr", "3hr");
 
-                    runSagaCommandZonalForPointsWRF0p11(apcp3hr, _date, _run, modelName[i], "3hr", "APCP", resource._1_SHAPE_FILE_);
-                    runSagaCommandZonalForPointsWRF0p11(apcp3hr, _date, _run, modelName[i], "3hr", "APCP", resource._3_SHAPE_FILE_);
+                    var t1 = Task.Factory.StartNew(()=>runSagaCommandZonalForPointsWRF0p11(apcp3hr, _date, _run, modelName[i], "3hr", "APCP", resource._1_SHAPE_FILE_));
+                    var t2 = Task.Factory.StartNew(()=>runSagaCommandZonalForPointsWRF0p11(apcp3hr, _date, _run, modelName[i], "3hr", "APCP", resource._3_SHAPE_FILE_));
                     //runSagaCommandZonalForPointsWRF0p11(apcp3hr, _date, _run, modelName[i], "3hr", "APCP", resource._4_SHAPE_FILE_);
                     //runSagaCommandZonalForPointsRainSum_12_24WRF0p11(apcpSum12hr, _date, _run, modelName[i], "3hr", "APCP-12hr", resource._1_SHAPE_FILE_, "12hr");
                     //runSagaCommandZonalForPointsRainSum_12_24WRF0p11(apcpSum24hr, _date, _run, modelName[i], "3hr", "APCP-24hr", resource._1_SHAPE_FILE_, "24hr");
-                    runSagaCommandZonalForPointsRainSum_12_24WRF0p11(apcpSum24hr, _date, _run, modelName[i], "3hr", "APCP", resource._1_SHAPE_FILE_, "ALL");
+                    //runSagaCommandZonalForPointsRainSum_12_24WRF0p11(apcpSum24hr, _date, _run, modelName[i], "3hr", "APCP", resource._1_SHAPE_FILE_, "ALL");
                     //runSagaCommandZonalForPointsRainSum_12_24WRF0p11(apcpSum12hr, _date, _run, modelName[i], "3hr", "APCP-12hr", resource._3_SHAPE_FILE_, "12hr");
                     //runSagaCommandZonalForPointsRainSum_12_24WRF0p11(apcpSum24hr, _date, _run, modelName[i], "3hr", "APCP-24hr", resource._3_SHAPE_FILE_, "24hr");
-                    runSagaCommandZonalForPointsRainSum_12_24WRF0p11(apcpSum24hr, _date, _run, modelName[i], "3hr", "APCP", resource._3_SHAPE_FILE_, "ALL");
+                    //runSagaCommandZonalForPointsRainSum_12_24WRF0p11(apcpSum24hr, _date, _run, modelName[i], "3hr", "APCP", resource._3_SHAPE_FILE_, "ALL");
                     //runSagaCommandZonalForPointsRainSum_12_24WRF0p11(apcpSum12hr, _date, _run, modelName[i], "3hr", "APCP-12hr", resource._4_SHAPE_FILE_, "12hr");
                     //runSagaCommandZonalForPointsRainSum_12_24WRF0p11(apcpSum24hr, _date, _run, modelName[i], "3hr", "APCP-24hr", resource._4_SHAPE_FILE_, "24hr");
                     //runSagaCommandZonalForPointsRainSum_12_24WRF0p11(apcpSum24hr, _date, _run, modelName[i], "3hr", "APCP", resource._4_SHAPE_FILE_, "ALL");
+                    Task.WaitAll(new Task[] { t1, t2 });
                 }
                 else
                 {
 
                     //string temp3hr = extractFileNamesWRF0p11(_date, _run, modelName[i], "TEMP", "3hr");
                     string rain3hr = extractFileNamesWRF0p11(_date, _run, modelName[i], "RAIN", "3hr");
-                    string rainSum12hr = extractFileNamesWRF0p11(_date, _run, modelName[i], "RAIN-12hr", "3hr");
-                    string rainSum24hr = extractFileNamesWRF0p11(_date, _run, modelName[i], "RAIN-24hr", "3hr");
+                    //string rainSum12hr = extractFileNamesWRF0p11(_date, _run, modelName[i], "RAIN-12hr", "3hr");
+                    //string rainSum24hr = extractFileNamesWRF0p11(_date, _run, modelName[i], "RAIN-24hr", "3hr");
 
-                    runSagaCommandZonalForPointsWRF0p11(rain3hr, _date, _run, modelName[i], "3hr", "RAIN", resource._1_SHAPE_FILE_);
+                    var t1 = Task.Factory.StartNew(()=>runSagaCommandZonalForPointsWRF0p11(rain3hr, _date, _run, modelName[i], "3hr", "RAIN", resource._1_SHAPE_FILE_));
                     //runSagaCommandZonalForPointsWRF0p11(temp3hr, _date, _run, modelName[i], "3hr", "TEMP", resource._1_SHAPE_FILE_);
                     //runSagaCommandZonalForPointsRainSum_12_24WRF0p11(rainSum12hr, _date, _run, modelName[i], "3hr", "RAIN-12hr", resource._1_SHAPE_FILE_, "12hr");
                     //runSagaCommandZonalForPointsRainSum_12_24WRF0p11(rainSum24hr, _date, _run, modelName[i], "3hr", "RAIN-24hr", resource._1_SHAPE_FILE_, "24hr");
-                    runSagaCommandZonalForPointsRainSum_12_24WRF0p11(rainSum24hr, _date, _run, modelName[i], "3hr", "RAIN", resource._1_SHAPE_FILE_, "ALL");
-                    runSagaCommandZonalForPointsWRF0p11(rain3hr, _date, _run, modelName[i], "3hr", "RAIN", resource._3_SHAPE_FILE_);
+                    //runSagaCommandZonalForPointsRainSum_12_24WRF0p11(rainSum24hr, _date, _run, modelName[i], "3hr", "RAIN", resource._1_SHAPE_FILE_, "ALL");
+                    var t2 = Task.Factory.StartNew(()=>runSagaCommandZonalForPointsWRF0p11(rain3hr, _date, _run, modelName[i], "3hr", "RAIN", resource._3_SHAPE_FILE_));
                     //runSagaCommandZonalForPointsWRF0p11(temp3hr, _date, _run, modelName[i], "3hr", "TEMP", resource._3_SHAPE_FILE_);
                     //runSagaCommandZonalForPointsRainSum_12_24WRF0p11(rainSum12hr, _date, _run, modelName[i], "3hr", "RAIN-12hr", resource._3_SHAPE_FILE_, "12hr");
                     //runSagaCommandZonalForPointsRainSum_12_24WRF0p11(rainSum24hr, _date, _run, modelName[i], "3hr", "RAIN-24hr", resource._3_SHAPE_FILE_, "24hr");
-                    runSagaCommandZonalForPointsRainSum_12_24WRF0p11(rainSum24hr, _date, _run, modelName[i], "3hr", "RAIN", resource._3_SHAPE_FILE_, "ALL");
+                    //runSagaCommandZonalForPointsRainSum_12_24WRF0p11(rainSum24hr, _date, _run, modelName[i], "3hr", "RAIN", resource._3_SHAPE_FILE_, "ALL");
                     //runSagaCommandZonalForPointsWRF0p11(rain3hr, _date, _run, modelName[i], "3hr", "RAIN", resource._4_SHAPE_FILE_);
                     //runSagaCommandZonalForPointsWRF0p11(temp3hr, _date, _run, modelName[i], "3hr", "TEMP", resource._4_SHAPE_FILE_);
                     //runSagaCommandZonalForPointsRainSum_12_24WRF0p11(rainSum12hr, _date, _run, modelName[i], "3hr", "RAIN-12hr", resource._4_SHAPE_FILE_, "12hr");
                     //runSagaCommandZonalForPointsRainSum_12_24WRF0p11(rainSum24hr, _date, _run, modelName[i], "3hr", "RAIN-24hr", resource._4_SHAPE_FILE_, "24hr");
                     //runSagaCommandZonalForPointsRainSum_12_24WRF0p11(rainSum24hr, _date, _run, modelName[i], "3hr", "RAIN", resource._4_SHAPE_FILE_, "ALL");
+                    Task.WaitAll(new Task[]{t1,t2});
                 }
             }
 
@@ -472,7 +473,7 @@ namespace DataManager
                 sagaCmd = resource.SagaCmdDir + " -f=s shapes_grid 2";
                 sagaCmd = sagaCmd + " -GRIDS=" + gridNames.Substring(0, gridNames.Length - 1);
                 sagaCmd = sagaCmd + " -POLYGONS=" + shapefile;
-                sagaCmd = sagaCmd + " -NAMING=1 -METHOD=2 -PARALLELIZED=1 -RESULT=" + target + " -COUNT=0 -MIN=0 -MAX=0 -RANGE=0 -SUM=0 -MEAN=1 -VAR=0 -STDDEV=0 -QUANTILE=0";
+                sagaCmd = sagaCmd + " -NAMING=1 -METHOD=2 -PARALLELIZED=0 -RESULT=" + target + " -COUNT=0 -MIN=0 -MAX=0 -RANGE=0 -SUM=0 -MEAN=1 -VAR=0 -STDDEV=0 -QUANTILE=0";
                 Directory.SetCurrentDirectory(workingDir);
 
                 Process cmd = new Process();
@@ -528,7 +529,7 @@ namespace DataManager
                 sagaCmd = resource.SagaCmdDir + " -f=s shapes_grid 2";
                 sagaCmd = sagaCmd + " -GRIDS=" + gridNames.Substring(0, gridNames.Length - 1);
                 sagaCmd = sagaCmd + " -POLYGONS=" + shapefile;
-                sagaCmd = sagaCmd + " -NAMING=1 -METHOD=2 -PARALLELIZED=1 -RESULT=" + target + " -COUNT=0 -MIN=0 -MAX=0 -RANGE=0 -SUM=0 -MEAN=1 -VAR=0 -STDDEV=0 -QUANTILE=0";
+                sagaCmd = sagaCmd + " -NAMING=1 -METHOD=2 -PARALLELIZED=0 -RESULT=" + target + " -COUNT=0 -MIN=0 -MAX=0 -RANGE=0 -SUM=0 -MEAN=1 -VAR=0 -STDDEV=0 -QUANTILE=0";
                 Directory.SetCurrentDirectory(workingDir);
 
                 Process cmd = new Process();
@@ -590,9 +591,9 @@ namespace DataManager
                     sagaCmd = sagaCmd + " -GRIDS=" + gridNames.Substring(0, gridNames.Length - 1);
                     sagaCmd = sagaCmd + " -POLYGONS=" + shapefile;
                     if (time == "ALL")
-                        sagaCmd = sagaCmd + " -NAMING=1 -METHOD=2 -PARALLELIZED=1 -RESULT=" + target + " -COUNT=0 -MIN=0 -MAX=0 -RANGE=0 -SUM=0 -MEAN=1 -VAR=0 -STDDEV=0 -QUANTILE=0";
+                        sagaCmd = sagaCmd + " -NAMING=1 -METHOD=2 -PARALLELIZED=0 -RESULT=" + target + " -COUNT=0 -MIN=0 -MAX=0 -RANGE=0 -SUM=0 -MEAN=1 -VAR=0 -STDDEV=0 -QUANTILE=0";
                     else
-                        sagaCmd = sagaCmd + " -NAMING=1 -METHOD=2 -PARALLELIZED=1 -RESULT=" + target + " -COUNT=0 -MIN=0 -MAX=1 -RANGE=0 -SUM=0 -MEAN=0 -VAR=0 -STDDEV=0 -QUANTILE=0";
+                        sagaCmd = sagaCmd + " -NAMING=1 -METHOD=2 -PARALLELIZED=0 -RESULT=" + target + " -COUNT=0 -MIN=0 -MAX=1 -RANGE=0 -SUM=0 -MEAN=0 -VAR=0 -STDDEV=0 -QUANTILE=0";
 
                     cmd.StartInfo.FileName = @"cmd.exe";
                     cmd.StartInfo.Arguments = @"/C " + sagaCmd;
@@ -676,9 +677,9 @@ namespace DataManager
                     sagaCmd = sagaCmd + " -GRIDS=" + gridNames.Substring(0, gridNames.Length - 1);
                     sagaCmd = sagaCmd + " -POLYGONS=" + shapefile;
                     if (time == "ALL")
-                        sagaCmd = sagaCmd + " -NAMING=1 -METHOD=2 -PARALLELIZED=1 -RESULT=" + target + " -COUNT=0 -MIN=0 -MAX=0 -RANGE=0 -SUM=0 -MEAN=1 -VAR=0 -STDDEV=0 -QUANTILE=0";
+                        sagaCmd = sagaCmd + " -NAMING=1 -METHOD=2 -PARALLELIZED=0 -RESULT=" + target + " -COUNT=0 -MIN=0 -MAX=0 -RANGE=0 -SUM=0 -MEAN=1 -VAR=0 -STDDEV=0 -QUANTILE=0";
                     else
-                        sagaCmd = sagaCmd + " -NAMING=1 -METHOD=2 -PARALLELIZED=1 -RESULT=" + target + " -COUNT=0 -MIN=0 -MAX=1 -RANGE=0 -SUM=0 -MEAN=0 -VAR=0 -STDDEV=0 -QUANTILE=0";
+                        sagaCmd = sagaCmd + " -NAMING=1 -METHOD=2 -PARALLELIZED=0 -RESULT=" + target + " -COUNT=0 -MIN=0 -MAX=1 -RANGE=0 -SUM=0 -MEAN=0 -VAR=0 -STDDEV=0 -QUANTILE=0";
 
                     cmd.StartInfo.FileName = @"cmd.exe";
                     cmd.StartInfo.Arguments = @"/C " + sagaCmd;
@@ -750,21 +751,21 @@ namespace DataManager
                 string apcp3hr = extractFileNamesGFS0p13(_date, _run, "APCP", "3hr");
                 //string apcpSum12hr = extractFileNamesGFS0p13(_date, _run, "APCP-12hr", "3hr");
                 //string apcpSum24hr = extractFileNamesGFS0p13(_date, _run, "APCP-24hr", "3hr");
-
                 //runSagaCommandZonalForPolygonsGFS0p13(apcp1hr, _date, _run, "1hr", "APCP", resource._2_SHPAE_FILE_);
                 //runSagaCommandZonalForPolygonsGFS0p13(apcp3hr, _date, _run, "3hr", "APCP", resource._2_SHPAE_FILE_);
                 //runSagaCommandZonalForPolygonsGFS0p13(apcp1hr, _date, _run, "1hr", "APCP", resource._5_SHAPE_FILE);
                 //runSagaCommandZonalForPolygonsGFS0p13(apcp3hr, _date, _run, "3hr", "APCP", resource._5_SHAPE_FILE);
                 //runSagaCommandZonalForPolygonsRainSum_12_24GFS0p13(apcpSum12hr, _date, _run, "3hr", "APCP-12hr", resource._2_SHPAE_FILE_, "12hr");
                 //runSagaCommandZonalForPolygonsRainSum_12_24GFS0p13(apcpSum24hr, _date, _run, "3hr", "APCP-24hr", resource._2_SHPAE_FILE_, "24hr");
-                runSagaCommandZonalForPolygonsRainSum_12_24GFS0p13(apcp3hr, _date, _run, "3hr", "APCP", resource._2_SHPAE_FILE_, "ALL");
-                runSagaCommandZonalForPolygonsRainSum_12_24GFS0p13(apcp3hr, _date, _run, "3hr", "APCP", resource._2_SHPAE_FILE_, "ALL_MAX");
+                var t11 = Task.Factory.StartNew(()=>runSagaCommandZonalForPolygonsRainSum_12_24GFS0p13(apcp3hr, _date, _run, "3hr", "APCP", resource._2_SHPAE_FILE_, "ALL"));
+                Task.Factory.StartNew(()=>runSagaCommandZonalForPolygonsRainSum_12_24GFS0p13(apcp3hr, _date, _run, "3hr", "APCP", resource._2_SHPAE_FILE_, "ALL_MAX"));
                 //runSagaCommandZonalForPolygonsRainSum_12_24GFS0p13(apcp1hr, _date, _run, "1hr", "APCP", resource._2_SHPAE_FILE_, "ALL");
                 //runSagaCommandZonalForPolygonsRainSum_12_24GFS0p13(apcpSum12hr, _date, _run, "3hr", "APCP-12hr", resource._5_SHAPE_FILE, "12hr");
                 //runSagaCommandZonalForPolygonsRainSum_12_24GFS0p13(apcpSum24hr, _date, _run, "3hr", "APCP-24hr", resource._5_SHAPE_FILE, "24hr");
-                runSagaCommandZonalForPolygonsRainSum_12_24GFS0p13(apcp3hr, _date, _run, "3hr", "APCP", resource._5_SHAPE_FILE, "ALL");
-                runSagaCommandZonalForPolygonsRainSum_12_24GFS0p13(apcp3hr, _date, _run, "3hr", "APCP", resource._5_SHAPE_FILE, "ALL_MAX");
+                var t22 = Task.Factory.StartNew(()=>runSagaCommandZonalForPolygonsRainSum_12_24GFS0p13(apcp3hr, _date, _run, "3hr", "APCP", resource._5_SHAPE_FILE, "ALL"));
+                var t33 = Task.Factory.StartNew(()=>runSagaCommandZonalForPolygonsRainSum_12_24GFS0p13(apcp3hr, _date, _run, "3hr", "APCP", resource._5_SHAPE_FILE, "ALL_MAX"));
                 //runSagaCommandZonalForPolygonsRainSum_12_24GFS0p13(apcp1hr, _date, _run, "1hr", "APCP", resource._5_SHAPE_FILE, "ALL");
+                Task.WaitAll(new Task[] {t11,t22,t33});
                 return status;
             }
             //runSagaCommandZonalForPolygonsGFS0p13(temp1hr, _date, _run, "1hr", "TEMP", resource._2_SHPAE_FILE_);
@@ -774,15 +775,15 @@ namespace DataManager
             //runSagaCommandZonalForPolygonsGFS0p13(temp3hr, _date, _run, "3hr", "TEMP", resource._5_SHAPE_FILE);
             //runSagaCommandZonalForPolygonsRainSum_12_24GFS0p13(rainSum12hr, _date, _run, "3hr", "RAIN-12hr", resource._2_SHPAE_FILE_, "12hr");
             //runSagaCommandZonalForPolygonsRainSum_12_24GFS0p13(rainSum24hr, _date, _run, "3hr", "RAIN-24hr", resource._2_SHPAE_FILE_, "24hr");
-            runSagaCommandZonalForPolygonsRainSum_12_24GFS0p13(rain3hr, _date, _run, "3hr", "RAIN", resource._2_SHPAE_FILE_, "ALL");
-            runSagaCommandZonalForPolygonsRainSum_12_24GFS0p13(rain3hr, _date, _run, "3hr", "RAIN", resource._2_SHPAE_FILE_, "ALL_MAX");
+            var t1 = Task.Factory.StartNew(()=>runSagaCommandZonalForPolygonsRainSum_12_24GFS0p13(rain3hr, _date, _run, "3hr", "RAIN", resource._2_SHPAE_FILE_, "ALL"));
+            Task.Factory.StartNew(()=>runSagaCommandZonalForPolygonsRainSum_12_24GFS0p13(rain3hr, _date, _run, "3hr", "RAIN", resource._2_SHPAE_FILE_, "ALL_MAX"));
             //runSagaCommandZonalForPolygonsRainSum_12_24GFS0p13(rain1hr, _date, _run, "1hr", "RAIN", resource._2_SHPAE_FILE_, "ALL");
             //runSagaCommandZonalForPolygonsRainSum_12_24GFS0p13(rainSum12hr, _date, _run, "3hr", "RAIN-12hr", resource._5_SHAPE_FILE, "12hr");
             //runSagaCommandZonalForPolygonsRainSum_12_24GFS0p13(rainSum24hr, _date, _run, "3hr", "RAIN-24hr", resource._5_SHAPE_FILE, "24hr");
-            runSagaCommandZonalForPolygonsRainSum_12_24GFS0p13(rain3hr, _date, _run, "3hr", "RAIN", resource._5_SHAPE_FILE, "ALL");
-            runSagaCommandZonalForPolygonsRainSum_12_24GFS0p13(rain3hr, _date, _run, "3hr", "RAIN", resource._5_SHAPE_FILE, "ALL_MAX");
+            var t2= Task.Factory.StartNew(()=>runSagaCommandZonalForPolygonsRainSum_12_24GFS0p13(rain3hr, _date, _run, "3hr", "RAIN", resource._5_SHAPE_FILE, "ALL"));
+            var t3 = Task.Factory.StartNew(()=>runSagaCommandZonalForPolygonsRainSum_12_24GFS0p13(rain3hr, _date, _run, "3hr", "RAIN", resource._5_SHAPE_FILE, "ALL_MAX"));
             //runSagaCommandZonalForPolygonsRainSum_12_24GFS0p13(rain1hr, _date, _run, "1hr", "RAIN", resource._5_SHAPE_FILE, "ALL");
-
+            Task.WaitAll(new Task[] { t1, t2, t3 });
             return status;
         }
         public static bool zonalForPolygonsWRF(string _date, string _run, string _variable = "RAIN")
@@ -794,38 +795,40 @@ namespace DataManager
                 if (_variable == "APCP")
                 {
                     string apcp3hr = extractFileNamesWRF0p11(_date, _run, modelName[i], "APCP", "3hr");
-                    string apcpSum12hr = extractFileNamesWRF0p11(_date, _run, modelName[i], "APCP-12hr", "3hr");
-                    string apcpSum24hr = extractFileNamesWRF0p11(_date, _run, modelName[i], "APCP-24hr", "3hr");
+                    //string apcpSum12hr = extractFileNamesWRF0p11(_date, _run, modelName[i], "APCP-12hr", "3hr");
+                    //string apcpSum24hr = extractFileNamesWRF0p11(_date, _run, modelName[i], "APCP-24hr", "3hr");
 
-                    runSagaCommandZonalForPolygonsWRF0p11(apcp3hr, _date, _run, modelName[i], "3hr", "APCP", resource._2_SHPAE_FILE_);
-                    runSagaCommandZonalForPolygonsWRF0p11(apcp3hr, _date, _run, modelName[i], "3hr", "APCP", resource._5_SHAPE_FILE);
-                    runSagaCommandZonalForPolygonsRainSum_12_24WRF0p11(apcpSum12hr, _date, _run, modelName[i], "3hr", "APCP-12hr", resource._2_SHPAE_FILE_, "12hr");
-                    runSagaCommandZonalForPolygonsRainSum_12_24WRF0p11(apcpSum24hr, _date, _run, modelName[i], "3hr", "APCP-24hr", resource._2_SHPAE_FILE_, "24hr");
-                    runSagaCommandZonalForPolygonsRainSum_12_24WRF0p11(apcp3hr, _date, _run, modelName[i], "3hr", "APCP", resource._2_SHPAE_FILE_, "ALL");
-                    runSagaCommandZonalForPolygonsRainSum_12_24WRF0p11(apcp3hr, _date, _run, modelName[i], "3hr", "APCP", resource._2_SHPAE_FILE_, "ALL_MAX");
-                    runSagaCommandZonalForPolygonsRainSum_12_24WRF0p11(apcpSum12hr, _date, _run, modelName[i], "3hr", "APCP-12hr", resource._5_SHAPE_FILE, "12hr");
-                    runSagaCommandZonalForPolygonsRainSum_12_24WRF0p11(apcpSum24hr, _date, _run, modelName[i], "3hr", "APCP-24hr", resource._5_SHAPE_FILE, "24hr");
-                    runSagaCommandZonalForPolygonsRainSum_12_24WRF0p11(apcp3hr, _date, _run, modelName[i], "3hr", "APCP", resource._5_SHAPE_FILE, "ALL");
-                    runSagaCommandZonalForPolygonsRainSum_12_24WRF0p11(apcp3hr, _date, _run, modelName[i], "3hr", "APCP", resource._5_SHAPE_FILE, "ALL_MAX");
+                    var t1 = Task.Factory.StartNew(()=>runSagaCommandZonalForPolygonsWRF0p11(apcp3hr, _date, _run, modelName[i], "3hr", "APCP", resource._2_SHPAE_FILE_));
+                    var t2 = Task.Factory.StartNew(() => runSagaCommandZonalForPolygonsWRF0p11(apcp3hr, _date, _run, modelName[i], "3hr", "APCP", resource._5_SHAPE_FILE));
+                    //runSagaCommandZonalForPolygonsRainSum_12_24WRF0p11(apcpSum12hr, _date, _run, modelName[i], "3hr", "APCP-12hr", resource._2_SHPAE_FILE_, "12hr");
+                    //runSagaCommandZonalForPolygonsRainSum_12_24WRF0p11(apcpSum24hr, _date, _run, modelName[i], "3hr", "APCP-24hr", resource._2_SHPAE_FILE_, "24hr");
+                    var t5 = Task.Factory.StartNew(() => runSagaCommandZonalForPolygonsRainSum_12_24WRF0p11(apcp3hr, _date, _run, modelName[i], "3hr", "APCP", resource._2_SHPAE_FILE_, "ALL"));
+                    Task.Factory.StartNew(() => runSagaCommandZonalForPolygonsRainSum_12_24WRF0p11(apcp3hr, _date, _run, modelName[i], "3hr", "APCP", resource._2_SHPAE_FILE_, "ALL_MAX"));
+                    //runSagaCommandZonalForPolygonsRainSum_12_24WRF0p11(apcpSum12hr, _date, _run, modelName[i], "3hr", "APCP-12hr", resource._5_SHAPE_FILE, "12hr");
+                    //runSagaCommandZonalForPolygonsRainSum_12_24WRF0p11(apcpSum24hr, _date, _run, modelName[i], "3hr", "APCP-24hr", resource._5_SHAPE_FILE, "24hr");
+                    var t3 = Task.Factory.StartNew(() => runSagaCommandZonalForPolygonsRainSum_12_24WRF0p11(apcp3hr, _date, _run, modelName[i], "3hr", "APCP", resource._5_SHAPE_FILE, "ALL"));
+                    var t4 = Task.Factory.StartNew(() => runSagaCommandZonalForPolygonsRainSum_12_24WRF0p11(apcp3hr, _date, _run, modelName[i], "3hr", "APCP", resource._5_SHAPE_FILE, "ALL_MAX"));
+                    Task.WaitAll(new Task[] { t1, t2,t3,t4,t5});
                 }
                 else
                 {
-                    string temp3hr = extractFileNamesWRF0p11(_date, _run, modelName[i], "TEMP", "3hr");
+                    //string temp3hr = extractFileNamesWRF0p11(_date, _run, modelName[i], "TEMP", "3hr");
                     string rain3hr = extractFileNamesWRF0p11(_date, _run, modelName[i], "RAIN", "3hr");
-                    string rainSum12hr = extractFileNamesWRF0p11(_date, _run, modelName[i], "RAIN-12hr", "3hr");
-                    string rainSum24hr = extractFileNamesWRF0p11(_date, _run, modelName[i], "RAIN-24hr", "3hr");
+                    //string rainSum12hr = extractFileNamesWRF0p11(_date, _run, modelName[i], "RAIN-12hr", "3hr");
+                    //string rainSum24hr = extractFileNamesWRF0p11(_date, _run, modelName[i], "RAIN-24hr", "3hr");
 
-                    runSagaCommandZonalForPolygonsWRF0p11(temp3hr, _date, _run, modelName[i], "3hr", "TEMP", resource._2_SHPAE_FILE_);
-                    runSagaCommandZonalForPolygonsWRF0p11(temp3hr, _date, _run, modelName[i], "3hr", "TEMP", resource._5_SHAPE_FILE);
-                    runSagaCommandZonalForPolygonsRainSum_12_24WRF0p11(rainSum12hr, _date, _run, modelName[i], "3hr", "RAIN-12hr", resource._2_SHPAE_FILE_, "12hr");
-                    runSagaCommandZonalForPolygonsRainSum_12_24WRF0p11(rainSum24hr, _date, _run, modelName[i], "3hr", "RAIN-24hr", resource._2_SHPAE_FILE_, "24hr");
-                    runSagaCommandZonalForPolygonsRainSum_12_24WRF0p11(rain3hr, _date, _run, modelName[i], "3hr", "RAIN", resource._2_SHPAE_FILE_, "ALL");
-                    runSagaCommandZonalForPolygonsRainSum_12_24WRF0p11(rain3hr, _date, _run, modelName[i], "3hr", "RAIN", resource._2_SHPAE_FILE_, "ALL_MAX");
-                    runSagaCommandZonalForPolygonsRainSum_12_24WRF0p11(rainSum12hr, _date, _run, modelName[i], "3hr", "RAIN-12hr", resource._5_SHAPE_FILE, "12hr");
-                    runSagaCommandZonalForPolygonsRainSum_12_24WRF0p11(rainSum24hr, _date, _run, modelName[i], "3hr", "RAIN-24hr", resource._5_SHAPE_FILE, "24hr");
-                    runSagaCommandZonalForPolygonsRainSum_12_24WRF0p11(rain3hr, _date, _run, modelName[i], "3hr", "RAIN", resource._5_SHAPE_FILE, "ALL");
-                    runSagaCommandZonalForPolygonsRainSum_12_24WRF0p11(rain3hr, _date, _run, modelName[i], "3hr", "RAIN", resource._5_SHAPE_FILE, "ALL_MAX");
+                    //runSagaCommandZonalForPolygonsWRF0p11(temp3hr, _date, _run, modelName[i], "3hr", "TEMP", resource._2_SHPAE_FILE_);
+                    //runSagaCommandZonalForPolygonsWRF0p11(temp3hr, _date, _run, modelName[i], "3hr", "TEMP", resource._5_SHAPE_FILE);
+                    //runSagaCommandZonalForPolygonsRainSum_12_24WRF0p11(rainSum12hr, _date, _run, modelName[i], "3hr", "RAIN-12hr", resource._2_SHPAE_FILE_, "12hr");
+                    //runSagaCommandZonalForPolygonsRainSum_12_24WRF0p11(rainSum24hr, _date, _run, modelName[i], "3hr", "RAIN-24hr", resource._2_SHPAE_FILE_, "24hr");
+                    var t1 = Task.Factory.StartNew(() => runSagaCommandZonalForPolygonsRainSum_12_24WRF0p11(rain3hr, _date, _run, modelName[i], "3hr", "RAIN", resource._2_SHPAE_FILE_, "ALL"));
+                    var t2 = Task.Factory.StartNew(() => runSagaCommandZonalForPolygonsRainSum_12_24WRF0p11(rain3hr, _date, _run, modelName[i], "3hr", "RAIN", resource._2_SHPAE_FILE_, "ALL_MAX"));
+                    //runSagaCommandZonalForPolygonsRainSum_12_24WRF0p11(rainSum12hr, _date, _run, modelName[i], "3hr", "RAIN-12hr", resource._5_SHAPE_FILE, "12hr");
+                    //runSagaCommandZonalForPolygonsRainSum_12_24WRF0p11(rainSum24hr, _date, _run, modelName[i], "3hr", "RAIN-24hr", resource._5_SHAPE_FILE, "24hr");
+                    var t3 = Task.Factory.StartNew(() => runSagaCommandZonalForPolygonsRainSum_12_24WRF0p11(rain3hr, _date, _run, modelName[i], "3hr", "RAIN", resource._5_SHAPE_FILE, "ALL"));
+                    var t4 = Task.Factory.StartNew(() => runSagaCommandZonalForPolygonsRainSum_12_24WRF0p11(rain3hr, _date, _run, modelName[i], "3hr", "RAIN", resource._5_SHAPE_FILE, "ALL_MAX"));
 
+                    Task.WaitAll(new Task[] { t1, t2, t3, t4 });
                 }
             }
             return status;
