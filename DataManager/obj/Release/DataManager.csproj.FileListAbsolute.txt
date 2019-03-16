@@ -1,0 +1,16 @@
+G:\Work\WRI\DataManager\DataManager\bin\Release\DataManager.exe.config
+G:\Work\WRI\DataManager\DataManager\bin\Release\DataManager.exe.manifest
+G:\Work\WRI\DataManager\DataManager\bin\Release\DataManager.application
+G:\Work\WRI\DataManager\DataManager\bin\Release\DataManager.exe
+G:\Work\WRI\DataManager\DataManager\bin\Release\DataManager.pdb
+G:\Work\WRI\DataManager\DataManager\bin\Release\gdal_csharp.dll
+G:\Work\WRI\DataManager\DataManager\bin\Release\ogr_csharp.dll
+G:\Work\WRI\DataManager\DataManager\bin\Release\osr_csharp.dll
+G:\Work\WRI\DataManager\DataManager\obj\Release\DataManager.resource.resources
+G:\Work\WRI\DataManager\DataManager\obj\Release\DataManager.csproj.GenerateResource.Cache
+G:\Work\WRI\DataManager\DataManager\obj\Release\DataManager.TrustInfo.xml
+G:\Work\WRI\DataManager\DataManager\obj\Release\DataManager.exe.manifest
+G:\Work\WRI\DataManager\DataManager\obj\Release\DataManager.application
+G:\Work\WRI\DataManager\DataManager\obj\Release\DataManager.exe
+G:\Work\WRI\DataManager\DataManager\obj\Release\DataManager.pdb
+G:\Work\WRI\DataManager\DataManager\obj\Release\DataManager.csprojResolveAssemblyReference.cache

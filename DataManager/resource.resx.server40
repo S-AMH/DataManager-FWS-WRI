@@ -1,0 +1,383 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="bottomlat" xml:space="preserve">
+    <value>24</value>
+    <comment>bottom latitude</comment>
+  </data>
+  <data name="curlDir" xml:space="preserve">
+    <value>D:\IranFWS\curl\bin\curl.exe</value>
+    <comment>curl executable directory</comment>
+  </data>
+  <data name="GDAS0p25HeightList" xml:space="preserve">
+    <value>lev_2_m_above_ground,lev_surface</value>
+    <comment>GDAS 0.25 Deg -&gt; surface level, 2m Above ground level</comment>
+  </data>
+  <data name="GDAS0p25VariablesList" xml:space="preserve">
+    <value>var_APCP,var_TMP</value>
+    <comment>GDAS 0.25 Deg -&gt; Total precipitation, Snow Depth, Soild moisture, Tempreture</comment>
+  </data>
+  <data name="GFS0p13HeightList" xml:space="preserve">
+    <value>lev_2_m_above_ground,lev_surface</value>
+    <comment>GFS 0.13 Deg -&gt; surface level, 2m Above ground level</comment>
+  </data>
+  <data name="GFS0p13VariablesList" xml:space="preserve">
+    <value>var_PRATE,var_TMP</value>
+    <comment>GFS 0.13 Deg -&gt; Precipitation rate (per sec.), Snow Depth, Soil moisture, Tempreture</comment>
+  </data>
+  <data name="GFS0p25HeightList" xml:space="preserve">
+    <value>lev_2_m_above_ground,lev_surface</value>
+    <comment>GFS 0.25 Deg -&gt; surface level, 2m Above ground level</comment>
+  </data>
+  <data name="GFS0p25VariablesList" xml:space="preserve">
+    <value>var_APCP,var_TMP</value>
+    <comment>GFS 0.25 Deg -&gt; Total precipitation, Snow Depth, Soild moisture, Tempreture</comment>
+  </data>
+  <data name="leftlon" xml:space="preserve">
+    <value>43</value>
+    <comment>left longitude</comment>
+  </data>
+  <data name="rightlon" xml:space="preserve">
+    <value>64</value>
+    <comment>right longitude</comment>
+  </data>
+  <data name="toplat" xml:space="preserve">
+    <value>40</value>
+    <comment>top latitude</comment>
+  </data>
+  <data name="GDAS0p25DownloadOutputDir" xml:space="preserve">
+    <value>D:\IranFWS\DataManager\gdas0p25DownloadDir</value>
+    <comment>CURL Download Directory for GRADS 0.25</comment>
+  </data>
+  <data name="GFS0p13DownloadOutputDir" xml:space="preserve">
+    <value>D:\IranFWS\DataManager\gfs0p13DownloadDir</value>
+    <comment>CURL Download Directory for GFS 0.13</comment>
+  </data>
+  <data name="GFS0p25DownloadOutputDir" xml:space="preserve">
+    <value>D:\IranFWS\DataManager\gfs0p25DownloadDir</value>
+    <comment>CURL Download Directory for GFS 0.25</comment>
+  </data>
+  <data name="gdal_translateDir" xml:space="preserve">
+    <value>D:\IranFWS\gdal\bin\gdal\apps\gdal_translate.exe</value>
+    <comment>Gdal Translate Executable.</comment>
+  </data>
+  <data name="gdas0p25InitHeightList" xml:space="preserve">
+    <value>lev_surface,lev_0-0.1_m_below_ground,lev_0.1-0.4_m_below_ground,lev_0.4-1_m_below_ground,lev_1-2_m_below_ground</value>
+    <comment>Initial Files Elevation.</comment>
+  </data>
+  <data name="gdas0p25InitVarList" xml:space="preserve">
+    <value>var_SNOD,var_SOILW</value>
+    <comment>Initial Files variables.</comment>
+  </data>
+  <data name="gfs0p13InitHeightList" xml:space="preserve">
+    <value>lev_surface,lev_0-0.1_m_below_ground,lev_0.1-0.4_m_below_ground,lev_0.4-1_m_below_ground,lev_1-2_m_below_ground</value>
+  </data>
+  <data name="gfs0p13InitVarList" xml:space="preserve">
+    <value>var_SNOD,var_SOILW</value>
+  </data>
+  <data name="gfs0p25InitHeightList" xml:space="preserve">
+    <value>lev_surface,lev_0-0.1_m_below_ground,lev_0.1-0.4_m_below_ground,lev_0.4-1_m_below_ground,lev_1-2_m_below_ground</value>
+  </data>
+  <data name="gfs0p25InitVarList" xml:space="preserve">
+    <value>var_SNOD,var_SOILW</value>
+  </data>
+  <data name="gfs0p25RawDataDB" xml:space="preserve">
+    <value>D:\FWS\DB\rawData\GFS\0.25</value>
+  </data>
+  <data name="GDAS0p25InitDownloadOutputDir" xml:space="preserve">
+    <value>D:\IranFWS\DataManager\gdas0p25InitDownloadDir</value>
+    <comment>Model Initial Files - Snow and Soild Moisture Download Directory</comment>
+  </data>
+  <data name="GDAS0p25TiffDirAPCP" xml:space="preserve">
+    <value>D:\IranFWS\DataManager\gdas0p25TiffDir\APCP</value>
+    <comment>Tiff Directory for Downloaded GRADS APCP Data</comment>
+  </data>
+  <data name="GDAS0p25TiffDirTEMP" xml:space="preserve">
+    <value>D:\IranFWS\DataManager\gdas0p25TiffDir\TEMP</value>
+    <comment>Tiff Directory for Downloaded GRADS TEMP Data</comment>
+  </data>
+  <data name="GFS0p13InitDownloadOutputDir" xml:space="preserve">
+    <value>D:\IranFWS\DataManager\gfs0p13InitDownloadDir</value>
+  </data>
+  <data name="GFS0p13TiffDirAPCP" xml:space="preserve">
+    <value>D:\IranFWS\DataManager\gfs0p13TiffDir\APCP</value>
+  </data>
+  <data name="GFS0p13TiffDirSNOW" xml:space="preserve">
+    <value>D:\IranFWS\DataManager\gfs0p13TiffDir\SNOW</value>
+  </data>
+  <data name="GFS0p13TiffDirSOILW" xml:space="preserve">
+    <value>D:\IranFWS\DataManager\gfs0p13TiffDir\SOILW</value>
+  </data>
+  <data name="GFS0p13TiffDirTEMP" xml:space="preserve">
+    <value>D:\IranFWS\DataManager\gfs0p13TiffDir\TEMP</value>
+  </data>
+  <data name="GFS0p25InitDownloadOutputDir" xml:space="preserve">
+    <value>D:\IranFWS\DataManager\gfs0p25InitDownloadDir</value>
+  </data>
+  <data name="GFS0p25TiffDirAPCP" xml:space="preserve">
+    <value>D:\IranFWS\DataManager\gfs0p25TiffDir\APCP</value>
+  </data>
+  <data name="GFS0p25TiffDirSNOW" xml:space="preserve">
+    <value>D:\IranFWS\DataManager\gfs0p25TiffDir\SNOW</value>
+  </data>
+  <data name="GFS0p25TiffDirSOILW" xml:space="preserve">
+    <value>D:\IranFWS\DataManager\gfs0p25TiffDir\SOILW</value>
+  </data>
+  <data name="GFS0p25TiffDirTEMP" xml:space="preserve">
+    <value>D:\IranFWS\DataManager\gfs0p25TiffDir\TEMP</value>
+  </data>
+  <data name="GFS0p13TiffDirPRate" xml:space="preserve">
+    <value>D:\IranFWS\DataManager\gfs0p13TiffDir\PRATE</value>
+  </data>
+  <data name="ZeroRaster13" xml:space="preserve">
+    <value>D:\FWS\DB\BaseLyers\zeroRaster\ZeroGrid13.tif</value>
+  </data>
+  <data name="ZeroRaster25" xml:space="preserve">
+    <value>D:\FWS\DB\BaseLyers\zeroRaster\ZeroGrid25.tif</value>
+  </data>
+  <data name="GFS0p13RawDataDB" xml:space="preserve">
+    <value>D:\FWS\DB\rawData\GFS\0.13</value>
+  </data>
+  <data name="GFS0p13TiffDirRAIN" xml:space="preserve">
+    <value>D:\IranFWS\DataManager\gfs0p13TiffDir\RAIN</value>
+  </data>
+  <data name="GFS0p25TiffDirRAIN" xml:space="preserve">
+    <value>D:\IranFWS\DataManager\gfs0p25TiffDir\RAIN</value>
+  </data>
+  <data name="SagaCmdDir" xml:space="preserve">
+    <value>D:\IranFWS\saga_4.0.0_win32\saga_cmd.exe</value>
+  </data>
+  <data name="GFS0p13ProcessedDB" xml:space="preserve">
+    <value>D:\FWS\DB\processedData\GFS\0.13</value>
+  </data>
+  <data name="_1_SHAPE_FILE_" xml:space="preserve">
+    <value>D:\FWS\DB\BaseLyers\Baransanji.shp</value>
+  </data>
+  <data name="_2_SHPAE_FILE_" xml:space="preserve">
+    <value>D:\FWS\DB\BaseLyers\Subs_L3.shp</value>
+  </data>
+  <data name="_3_SHAPE_FILE_" xml:space="preserve">
+    <value>D:\FWS\DB\BaseLyers\Synoptic.shp</value>
+  </data>
+  <data name="_4_SHAPE_FILE_" xml:space="preserve">
+    <value>D:\FWS\DB\BaseLyers\baransanj_mabnaNiro.shp</value>
+  </data>
+  <data name="_5_SHAPE_FILE" xml:space="preserve">
+    <value>D:\FWS\DB\BaseLyers\ostangeo.shp</value>
+  </data>
+  <data name="wrfRawDB" xml:space="preserve">
+    <value>D:\FWS\DB\rawData\WRF\0.11</value>
+  </data>
+  <data name="wrfTiffDirEnsembleAPCP" xml:space="preserve">
+    <value>\\10.0.0.146\Share\APCP\ensem</value>
+  </data>
+  <data name="wrfTiffDirEnsembleSNOW" xml:space="preserve">
+    <value>\\10.0.0.146\Share\SNOW\ensem</value>
+  </data>
+  <data name="wrfTiffDirEnsembleSOIL" xml:space="preserve">
+    <value>\\10.0.0.146\Share\SOIL\ensem</value>
+  </data>
+  <data name="wrfTiffDirEnsembleTEMP" xml:space="preserve">
+    <value>\\10.0.0.146\Share\TEMP\ensem</value>
+  </data>
+  <data name="wrfTiffDirFerrierAPCP" xml:space="preserve">
+    <value>\\10.0.0.146\Share\APCP\ferrier</value>
+  </data>
+  <data name="wrfTiffDirFerrierSNOW" xml:space="preserve">
+    <value>\\10.0.0.146\Share\SNOW\ferrier</value>
+  </data>
+  <data name="wrfTiffDirFerrierSOIL" xml:space="preserve">
+    <value>\\10.0.0.146\Share\SOIL\ferrier</value>
+  </data>
+  <data name="wrfTiffDirFerrierTEMP" xml:space="preserve">
+    <value>\\10.0.0.146\Share\TEMP\ferrier</value>
+  </data>
+  <data name="wrfTiffDirLinAPCP" xml:space="preserve">
+    <value>\\10.0.0.146\Share\APCP\lin</value>
+  </data>
+  <data name="wrfTiffDirLinSNOW" xml:space="preserve">
+    <value>\\10.0.0.146\Share\SNOW\lin</value>
+  </data>
+  <data name="wrfTiffDirLinSOIL" xml:space="preserve">
+    <value>\\10.0.0.146\Share\SOIL\lin</value>
+  </data>
+  <data name="wrfTiffDirLinTEMP" xml:space="preserve">
+    <value>\\10.0.0.146\Share\TEMP\lin</value>
+  </data>
+  <data name="wrfTiffDirWsm6APCP" xml:space="preserve">
+    <value>\\10.0.0.146\Share\APCP\wsm6</value>
+  </data>
+  <data name="wrfTiffDirWsm6SNOW" xml:space="preserve">
+    <value>\\10.0.0.146\Share\SNOW\wsm6</value>
+  </data>
+  <data name="wrfTiffDirWsm6SOIL" xml:space="preserve">
+    <value>\\10.0.0.146\Share\SOIL\wsm6</value>
+  </data>
+  <data name="wrfTiffDirWsm6TEMP" xml:space="preserve">
+    <value>\\10.0.0.146\Share\TEMP\wsm6</value>
+  </data>
+  <data name="wrfProccessedDB" xml:space="preserve">
+    <value>D:\FWS\DB\processedData\WRF\0.11</value>
+  </data>
+  <data name="ZeroRasterWRF" xml:space="preserve">
+    <value>D:\FWS\DB\BaseLyers\zeroRaster\ZeroGridWRF.tif</value>
+  </data>
+  <data name="DBUpdate" xml:space="preserve">
+    <value>D:\FWS\DB\tmpFiles\~DBUpdate</value>
+  </data>
+  <data name="DownloadLog" xml:space="preserve">
+    <value>D:\FWS\DB\tmpFiles\DownloadLog</value>
+  </data>
+  <data name="downloadQuery" xml:space="preserve">
+    <value>D:\FWS\DB\tmpFiles\~DownloadQuery</value>
+  </data>
+  <data name="publishGFS" xml:space="preserve">
+    <value>D:\FWS\DB\WebGIS\PublishGFS.py</value>
+  </data>
+  <data name="publishWRF" xml:space="preserve">
+    <value>D:\FWS\DB\WebGIS\PublishWRF.py</value>
+  </data>
+  <data name="uploadGFS" xml:space="preserve">
+    <value>D:\FWS\DB\WebGIS\UploadGFS.py</value>
+  </data>
+  <data name="uploadLog" xml:space="preserve">
+    <value>D:\FWS\DB\tmpFiles\UploadLog</value>
+  </data>
+  <data name="uploadLogWRF" xml:space="preserve">
+    <value>D:\FWS\DB\tmpFiles\UploadLogWRF</value>
+  </data>
+  <data name="uploadWRF" xml:space="preserve">
+    <value>D:\FWS\DB\WebGIS\UploadWRF.py</value>
+  </data>
+  <data name="wrfTempDir" xml:space="preserve">
+    <value>\\10.0.0.146\Share</value>
+  </data>
+  <data name="publishGfsApcp" xml:space="preserve">
+    <value>D:\FWS\DB\WebGIS\PublishGFS-APCP.py</value>
+  </data>
+  <data name="uploadGfsApcp" xml:space="preserve">
+    <value>D:\FWS\DB\WebGIS\UploadGFS-APCP.py</value>
+  </data>
+  <data name="publishWRFAPCP" xml:space="preserve">
+    <value>D:\FWS\DB\WebGIS\PublishWRF-APCP.py</value>
+  </data>
+  <data name="uploadWRFAPCP" xml:space="preserve">
+    <value>D:\FWS\DB\WebGIS\UploadWRF-APCP.py</value>
+  </data>
+</root>

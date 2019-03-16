@@ -1,0 +1,3 @@
+G:\Work\WRI\DataManager\DataManager\bin\x64\Release\DataManager.exe.config
+G:\Work\WRI\DataManager\DataManager\obj\x64\Release\DataManager.resource.resources
+G:\Work\WRI\DataManager\DataManager\obj\x64\Release\DataManager.csproj.GenerateResource.Cache
