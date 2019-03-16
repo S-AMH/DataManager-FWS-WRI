@@ -241,4 +241,3 @@ F:\WRI\DataManager\DataManager\bin\x86\Release\zh-CN\Esri.ArcGISRuntime.resource
 F:\WRI\DataManager\DataManager\bin\x86\Release\zh-Hans\Esri.ArcGISRuntime.resources.dll
 F:\WRI\DataManager\DataManager\bin\x86\Release\zh-HK\Esri.ArcGISRuntime.resources.dll
 F:\WRI\DataManager\DataManager\bin\x86\Release\zh-TW\Esri.ArcGISRuntime.resources.dll
-F:\WRI\DataManager\DataManager\obj\x86\Release\DataManager.csprojResolveAssemblyReference.cache

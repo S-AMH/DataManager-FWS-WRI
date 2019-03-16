@@ -88,15 +88,6 @@ namespace DataManager {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to C:\FWS\DB\BaseLayers\baransanj_mabnaNiro.shp.
-        /// </summary>
-        internal static string _4_SHAPE_FILE_ {
-            get {
-                return ResourceManager.GetString("_4_SHAPE_FILE_", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to C:\FWS\DB\BaseLayers\ostangeo.shp.
         /// </summary>
         internal static string _5_SHAPE_FILE {

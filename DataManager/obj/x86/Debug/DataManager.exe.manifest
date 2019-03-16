@@ -3,7 +3,7 @@
   <asmv1:assemblyIdentity name="DataManager.exe" version="1.0.0.0" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="x86" type="win32" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="DataManager" version="1.0.7014.24491" language="neutral" processorArchitecture="x86" />
+    <assemblyIdentity name="DataManager" version="1.0.7014.25582" language="neutral" processorArchitecture="x86" />
     <commandLine file="DataManager.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="DataManager.exe" size="114176">
-      <assemblyIdentity name="DataManager" version="1.0.7014.24491" language="neutral" processorArchitecture="x86" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="DataManager.exe" size="111616">
+      <assemblyIdentity name="DataManager" version="1.0.7014.25582" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>ZvTDeUKasr1uySndRhqYvGTTNOKJ6aKbf6tXVa3lIMY=</dsig:DigestValue>
+        <dsig:DigestValue>vbPC00gj0C3CRXZ9peGt6+RnhMgWS/ED2MkugN/Aaas=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

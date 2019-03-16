@@ -330,66 +330,66 @@ namespace DataManager
         public static bool zonalForPoints(string _date, string _run, string var="RAIN")
         { 
 
-            string temp1hr = extractFileNamesGFS0p13(_date, _run, "TEMP", "1hr");
-            string rain1hr = extractFileNamesGFS0p13(_date, _run, "RAIN", "1hr");
-            string temp3hr = extractFileNamesGFS0p13(_date, _run, "TEMP", "3hr");
+            //string temp1hr = extractFileNamesGFS0p13(_date, _run, "TEMP", "1hr");
+            //string rain1hr = extractFileNamesGFS0p13(_date, _run, "RAIN", "1hr");
+            //string temp3hr = extractFileNamesGFS0p13(_date, _run, "TEMP", "3hr");
             string rain3hr = extractFileNamesGFS0p13(_date, _run, "RAIN", "3hr");
-            string rainSum12hr = extractFileNamesGFS0p13(_date, _run, "RAIN-12hr", "3hr");
-            string rainSum24hr = extractFileNamesGFS0p13(_date, _run, "RAIN-24hr", "3hr");
+            //string rainSum12hr = extractFileNamesGFS0p13(_date, _run, "RAIN-12hr", "3hr");
+            //string rainSum24hr = extractFileNamesGFS0p13(_date, _run, "RAIN-24hr", "3hr");
 
             if (var == "APCP")
             {
-                string apcp1hr = extractFileNamesGFS0p13(_date, _run, "APCP", "1hr");
-                string apcpSum12hr = extractFileNamesGFS0p13(_date, _run, "APCP-12hr", "3hr");
-                string apcpSum24hr = extractFileNamesGFS0p13(_date, _run, "APCP-24hr", "3hr");
+                //string apcp1hr = extractFileNamesGFS0p13(_date, _run, "APCP", "1hr");
+                //string apcpSum12hr = extractFileNamesGFS0p13(_date, _run, "APCP-12hr", "3hr");
+                //string apcpSum24hr = extractFileNamesGFS0p13(_date, _run, "APCP-24hr", "3hr");
                 string apcp3hr = extractFileNamesGFS0p13(_date, _run, "APCP", "3hr");
 
-                runSagaCommandZonalForPointsGFS0p13(apcp1hr, _date, _run, "1hr", "APCP", resource._1_SHAPE_FILE_);
+                //runSagaCommandZonalForPointsGFS0p13(apcp1hr, _date, _run, "1hr", "APCP", resource._1_SHAPE_FILE_);
                 runSagaCommandZonalForPointsGFS0p13(apcp3hr, _date, _run, "3hr", "APCP", resource._1_SHAPE_FILE_);
-                runSagaCommandZonalForPointsGFS0p13(apcp1hr, _date, _run, "1hr", "APCP", resource._3_SHAPE_FILE_);
+                //runSagaCommandZonalForPointsGFS0p13(apcp1hr, _date, _run, "1hr", "APCP", resource._3_SHAPE_FILE_);
                 runSagaCommandZonalForPointsGFS0p13(apcp3hr, _date, _run, "3hr", "APCP", resource._3_SHAPE_FILE_);
-                runSagaCommandZonalForPointsGFS0p13(apcp1hr, _date, _run, "1hr", "APCP", resource._4_SHAPE_FILE_);
-                runSagaCommandZonalForPointsGFS0p13(apcp3hr, _date, _run, "3hr", "APCP", resource._4_SHAPE_FILE_);
-                runSagaCommandZonalForPointsRainSum_12_24GFS0p13(apcpSum12hr, _date, _run, "3hr", "APCP-12hr", resource._1_SHAPE_FILE_, "12hr");
-                runSagaCommandZonalForPointsRainSum_12_24GFS0p13(apcpSum24hr, _date, _run, "3hr", "APCP-24hr", resource._1_SHAPE_FILE_, "24hr");
-                runSagaCommandZonalForPointsRainSum_12_24GFS0p13(apcpSum24hr, _date, _run, "3hr", "APCP", resource._1_SHAPE_FILE_, "ALL");
-                runSagaCommandZonalForPointsRainSum_12_24GFS0p13(apcpSum24hr, _date, _run, "1hr", "APCP", resource._1_SHAPE_FILE_, "ALL");
-                runSagaCommandZonalForPointsRainSum_12_24GFS0p13(apcpSum12hr, _date, _run, "3hr", "APCP-12hr", resource._3_SHAPE_FILE_, "12hr");
-                runSagaCommandZonalForPointsRainSum_12_24GFS0p13(apcpSum24hr, _date, _run, "3hr", "APCP-24hr", resource._3_SHAPE_FILE_, "24hr");
-                runSagaCommandZonalForPointsRainSum_12_24GFS0p13(apcpSum24hr, _date, _run, "3hr", "APCP", resource._3_SHAPE_FILE_, "ALL");
-                runSagaCommandZonalForPointsRainSum_12_24GFS0p13(apcpSum24hr, _date, _run, "1hr", "APCP", resource._3_SHAPE_FILE_, "ALL");
-                runSagaCommandZonalForPointsRainSum_12_24GFS0p13(apcpSum12hr, _date, _run, "3hr", "APCP-12hr", resource._4_SHAPE_FILE_, "12hr");
-                runSagaCommandZonalForPointsRainSum_12_24GFS0p13(apcpSum24hr, _date, _run, "3hr", "APCP-24hr", resource._4_SHAPE_FILE_, "24hr");
-                runSagaCommandZonalForPointsRainSum_12_24GFS0p13(apcpSum24hr, _date, _run, "3hr", "APCP", resource._4_SHAPE_FILE_, "ALL");
-                runSagaCommandZonalForPointsRainSum_12_24GFS0p13(apcpSum24hr, _date, _run, "1hr", "APCP", resource._4_SHAPE_FILE_, "ALL");
+                //runSagaCommandZonalForPointsGFS0p13(apcp1hr, _date, _run, "1hr", "APCP", resource._4_SHAPE_FILE_);
+                //runSagaCommandZonalForPointsGFS0p13(apcp3hr, _date, _run, "3hr", "APCP", resource._4_SHAPE_FILE_);
+                //runSagaCommandZonalForPointsRainSum_12_24GFS0p13(apcpSum12hr, _date, _run, "3hr", "APCP-12hr", resource._1_SHAPE_FILE_, "12hr");
+                //runSagaCommandZonalForPointsRainSum_12_24GFS0p13(apcpSum24hr, _date, _run, "3hr", "APCP-24hr", resource._1_SHAPE_FILE_, "24hr");
+                //runSagaCommandZonalForPointsRainSum_12_24GFS0p13(apcpSum24hr, _date, _run, "3hr", "APCP", resource._1_SHAPE_FILE_, "ALL");
+                //runSagaCommandZonalForPointsRainSum_12_24GFS0p13(apcpSum24hr, _date, _run, "1hr", "APCP", resource._1_SHAPE_FILE_, "ALL");
+                //runSagaCommandZonalForPointsRainSum_12_24GFS0p13(apcpSum12hr, _date, _run, "3hr", "APCP-12hr", resource._3_SHAPE_FILE_, "12hr");
+                //runSagaCommandZonalForPointsRainSum_12_24GFS0p13(apcpSum24hr, _date, _run, "3hr", "APCP-24hr", resource._3_SHAPE_FILE_, "24hr");
+                //runSagaCommandZonalForPointsRainSum_12_24GFS0p13(apcpSum24hr, _date, _run, "3hr", "APCP", resource._3_SHAPE_FILE_, "ALL");
+                //runSagaCommandZonalForPointsRainSum_12_24GFS0p13(apcpSum24hr, _date, _run, "1hr", "APCP", resource._3_SHAPE_FILE_, "ALL");
+                //runSagaCommandZonalForPointsRainSum_12_24GFS0p13(apcpSum12hr, _date, _run, "3hr", "APCP-12hr", resource._4_SHAPE_FILE_, "12hr");
+                //runSagaCommandZonalForPointsRainSum_12_24GFS0p13(apcpSum24hr, _date, _run, "3hr", "APCP-24hr", resource._4_SHAPE_FILE_, "24hr");
+                //runSagaCommandZonalForPointsRainSum_12_24GFS0p13(apcpSum24hr, _date, _run, "3hr", "APCP", resource._4_SHAPE_FILE_, "ALL");
+                //runSagaCommandZonalForPointsRainSum_12_24GFS0p13(apcpSum24hr, _date, _run, "1hr", "APCP", resource._4_SHAPE_FILE_, "ALL");
 
                 return true;
             }
 
-            runSagaCommandZonalForPointsGFS0p13(rain1hr, _date, _run, "1hr", "RAIN", resource._1_SHAPE_FILE_);
-            runSagaCommandZonalForPointsGFS0p13(temp1hr, _date, _run, "1hr", "TEMP", resource._1_SHAPE_FILE_);
+            //runSagaCommandZonalForPointsGFS0p13(rain1hr, _date, _run, "1hr", "RAIN", resource._1_SHAPE_FILE_);
+            //runSagaCommandZonalForPointsGFS0p13(temp1hr, _date, _run, "1hr", "TEMP", resource._1_SHAPE_FILE_);
             runSagaCommandZonalForPointsGFS0p13(rain3hr, _date, _run, "3hr", "RAIN", resource._1_SHAPE_FILE_);
-            runSagaCommandZonalForPointsGFS0p13(temp3hr, _date, _run, "3hr", "TEMP", resource._1_SHAPE_FILE_);
-            runSagaCommandZonalForPointsRainSum_12_24GFS0p13(rainSum12hr, _date, _run, "3hr", "RAIN-12hr", resource._1_SHAPE_FILE_, "12hr");
-            runSagaCommandZonalForPointsRainSum_12_24GFS0p13(rainSum24hr, _date, _run, "3hr", "RAIN-24hr", resource._1_SHAPE_FILE_, "24hr");
-            runSagaCommandZonalForPointsRainSum_12_24GFS0p13(rainSum24hr, _date, _run, "3hr", "RAIN", resource._1_SHAPE_FILE_, "ALL");
-            runSagaCommandZonalForPointsRainSum_12_24GFS0p13(rainSum24hr, _date, _run, "1hr", "RAIN", resource._1_SHAPE_FILE_, "ALL");
-            runSagaCommandZonalForPointsGFS0p13(rain1hr, _date, _run, "1hr", "RAIN", resource._3_SHAPE_FILE_);
-            runSagaCommandZonalForPointsGFS0p13(temp1hr, _date, _run, "1hr", "TEMP", resource._3_SHAPE_FILE_);
+            //runSagaCommandZonalForPointsGFS0p13(temp3hr, _date, _run, "3hr", "TEMP", resource._1_SHAPE_FILE_);
+            //runSagaCommandZonalForPointsRainSum_12_24GFS0p13(rainSum12hr, _date, _run, "3hr", "RAIN-12hr", resource._1_SHAPE_FILE_, "12hr");
+            //runSagaCommandZonalForPointsRainSum_12_24GFS0p13(rainSum24hr, _date, _run, "3hr", "RAIN-24hr", resource._1_SHAPE_FILE_, "24hr");
+            //runSagaCommandZonalForPointsRainSum_12_24GFS0p13(rainSum24hr, _date, _run, "3hr", "RAIN", resource._1_SHAPE_FILE_, "ALL");
+            //runSagaCommandZonalForPointsRainSum_12_24GFS0p13(rainSum24hr, _date, _run, "1hr", "RAIN", resource._1_SHAPE_FILE_, "ALL");
+            //runSagaCommandZonalForPointsGFS0p13(rain1hr, _date, _run, "1hr", "RAIN", resource._3_SHAPE_FILE_);
+            //runSagaCommandZonalForPointsGFS0p13(temp1hr, _date, _run, "1hr", "TEMP", resource._3_SHAPE_FILE_);
             runSagaCommandZonalForPointsGFS0p13(rain3hr, _date, _run, "3hr", "RAIN", resource._3_SHAPE_FILE_);
-            runSagaCommandZonalForPointsGFS0p13(temp3hr, _date, _run, "3hr", "TEMP", resource._3_SHAPE_FILE_);
-            runSagaCommandZonalForPointsRainSum_12_24GFS0p13(rainSum12hr, _date, _run, "3hr", "RAIN-12hr", resource._3_SHAPE_FILE_, "12hr");
-            runSagaCommandZonalForPointsRainSum_12_24GFS0p13(rainSum24hr, _date, _run, "3hr", "RAIN-24hr", resource._3_SHAPE_FILE_, "24hr");
-            runSagaCommandZonalForPointsRainSum_12_24GFS0p13(rainSum24hr, _date, _run, "3hr", "RAIN", resource._3_SHAPE_FILE_, "ALL");
-            runSagaCommandZonalForPointsRainSum_12_24GFS0p13(rainSum24hr, _date, _run, "1hr", "RAIN", resource._3_SHAPE_FILE_, "ALL");
-            runSagaCommandZonalForPointsGFS0p13(rain1hr, _date, _run, "1hr", "RAIN", resource._4_SHAPE_FILE_);
-            runSagaCommandZonalForPointsGFS0p13(temp1hr, _date, _run, "1hr", "TEMP", resource._4_SHAPE_FILE_);
-            runSagaCommandZonalForPointsGFS0p13(rain3hr, _date, _run, "3hr", "RAIN", resource._4_SHAPE_FILE_);
-            runSagaCommandZonalForPointsGFS0p13(temp3hr, _date, _run, "3hr", "TEMP", resource._4_SHAPE_FILE_);
-            runSagaCommandZonalForPointsRainSum_12_24GFS0p13(rainSum12hr, _date, _run, "3hr", "RAIN-12hr", resource._4_SHAPE_FILE_, "12hr");
-            runSagaCommandZonalForPointsRainSum_12_24GFS0p13(rainSum24hr, _date, _run, "3hr", "RAIN-24hr", resource._4_SHAPE_FILE_, "24hr");
-            runSagaCommandZonalForPointsRainSum_12_24GFS0p13(rainSum24hr, _date, _run, "3hr", "RAIN", resource._4_SHAPE_FILE_, "ALL");
-            runSagaCommandZonalForPointsRainSum_12_24GFS0p13(rainSum24hr, _date, _run, "1hr", "RAIN", resource._4_SHAPE_FILE_, "ALL");
+            //runSagaCommandZonalForPointsGFS0p13(temp3hr, _date, _run, "3hr", "TEMP", resource._3_SHAPE_FILE_);
+            //runSagaCommandZonalForPointsRainSum_12_24GFS0p13(rainSum12hr, _date, _run, "3hr", "RAIN-12hr", resource._3_SHAPE_FILE_, "12hr");
+            //runSagaCommandZonalForPointsRainSum_12_24GFS0p13(rainSum24hr, _date, _run, "3hr", "RAIN-24hr", resource._3_SHAPE_FILE_, "24hr");
+            //runSagaCommandZonalForPointsRainSum_12_24GFS0p13(rainSum24hr, _date, _run, "3hr", "RAIN", resource._3_SHAPE_FILE_, "ALL");
+            //runSagaCommandZonalForPointsRainSum_12_24GFS0p13(rainSum24hr, _date, _run, "1hr", "RAIN", resource._3_SHAPE_FILE_, "ALL");
+            //runSagaCommandZonalForPointsGFS0p13(rain1hr, _date, _run, "1hr", "RAIN", resource._4_SHAPE_FILE_);
+            //runSagaCommandZonalForPointsGFS0p13(temp1hr, _date, _run, "1hr", "TEMP", resource._4_SHAPE_FILE_);
+            //runSagaCommandZonalForPointsGFS0p13(rain3hr, _date, _run, "3hr", "RAIN", resource._4_SHAPE_FILE_);
+            ////runSagaCommandZonalForPointsGFS0p13(temp3hr, _date, _run, "3hr", "TEMP", resource._4_SHAPE_FILE_);
+            //runSagaCommandZonalForPointsRainSum_12_24GFS0p13(rainSum12hr, _date, _run, "3hr", "RAIN-12hr", resource._4_SHAPE_FILE_, "12hr");
+            //runSagaCommandZonalForPointsRainSum_12_24GFS0p13(rainSum24hr, _date, _run, "3hr", "RAIN-24hr", resource._4_SHAPE_FILE_, "24hr");
+            //runSagaCommandZonalForPointsRainSum_12_24GFS0p13(rainSum24hr, _date, _run, "3hr", "RAIN", resource._4_SHAPE_FILE_, "ALL");
+            //runSagaCommandZonalForPointsRainSum_12_24GFS0p13(rainSum24hr, _date, _run, "1hr", "RAIN", resource._4_SHAPE_FILE_, "ALL");
 
             return true;
         }
@@ -408,40 +408,40 @@ namespace DataManager
 
                     runSagaCommandZonalForPointsWRF0p11(apcp3hr, _date, _run, modelName[i], "3hr", "APCP", resource._1_SHAPE_FILE_);
                     runSagaCommandZonalForPointsWRF0p11(apcp3hr, _date, _run, modelName[i], "3hr", "APCP", resource._3_SHAPE_FILE_);
-                    runSagaCommandZonalForPointsWRF0p11(apcp3hr, _date, _run, modelName[i], "3hr", "APCP", resource._4_SHAPE_FILE_);
-                    runSagaCommandZonalForPointsRainSum_12_24WRF0p11(apcpSum12hr, _date, _run, modelName[i], "3hr", "APCP-12hr", resource._1_SHAPE_FILE_, "12hr");
-                    runSagaCommandZonalForPointsRainSum_12_24WRF0p11(apcpSum24hr, _date, _run, modelName[i], "3hr", "APCP-24hr", resource._1_SHAPE_FILE_, "24hr");
+                    //runSagaCommandZonalForPointsWRF0p11(apcp3hr, _date, _run, modelName[i], "3hr", "APCP", resource._4_SHAPE_FILE_);
+                    //runSagaCommandZonalForPointsRainSum_12_24WRF0p11(apcpSum12hr, _date, _run, modelName[i], "3hr", "APCP-12hr", resource._1_SHAPE_FILE_, "12hr");
+                    //runSagaCommandZonalForPointsRainSum_12_24WRF0p11(apcpSum24hr, _date, _run, modelName[i], "3hr", "APCP-24hr", resource._1_SHAPE_FILE_, "24hr");
                     runSagaCommandZonalForPointsRainSum_12_24WRF0p11(apcpSum24hr, _date, _run, modelName[i], "3hr", "APCP", resource._1_SHAPE_FILE_, "ALL");
-                    runSagaCommandZonalForPointsRainSum_12_24WRF0p11(apcpSum12hr, _date, _run, modelName[i], "3hr", "APCP-12hr", resource._3_SHAPE_FILE_, "12hr");
-                    runSagaCommandZonalForPointsRainSum_12_24WRF0p11(apcpSum24hr, _date, _run, modelName[i], "3hr", "APCP-24hr", resource._3_SHAPE_FILE_, "24hr");
+                    //runSagaCommandZonalForPointsRainSum_12_24WRF0p11(apcpSum12hr, _date, _run, modelName[i], "3hr", "APCP-12hr", resource._3_SHAPE_FILE_, "12hr");
+                    //runSagaCommandZonalForPointsRainSum_12_24WRF0p11(apcpSum24hr, _date, _run, modelName[i], "3hr", "APCP-24hr", resource._3_SHAPE_FILE_, "24hr");
                     runSagaCommandZonalForPointsRainSum_12_24WRF0p11(apcpSum24hr, _date, _run, modelName[i], "3hr", "APCP", resource._3_SHAPE_FILE_, "ALL");
-                    runSagaCommandZonalForPointsRainSum_12_24WRF0p11(apcpSum12hr, _date, _run, modelName[i], "3hr", "APCP-12hr", resource._4_SHAPE_FILE_, "12hr");
-                    runSagaCommandZonalForPointsRainSum_12_24WRF0p11(apcpSum24hr, _date, _run, modelName[i], "3hr", "APCP-24hr", resource._4_SHAPE_FILE_, "24hr");
-                    runSagaCommandZonalForPointsRainSum_12_24WRF0p11(apcpSum24hr, _date, _run, modelName[i], "3hr", "APCP", resource._4_SHAPE_FILE_, "ALL");
+                    //runSagaCommandZonalForPointsRainSum_12_24WRF0p11(apcpSum12hr, _date, _run, modelName[i], "3hr", "APCP-12hr", resource._4_SHAPE_FILE_, "12hr");
+                    //runSagaCommandZonalForPointsRainSum_12_24WRF0p11(apcpSum24hr, _date, _run, modelName[i], "3hr", "APCP-24hr", resource._4_SHAPE_FILE_, "24hr");
+                    //runSagaCommandZonalForPointsRainSum_12_24WRF0p11(apcpSum24hr, _date, _run, modelName[i], "3hr", "APCP", resource._4_SHAPE_FILE_, "ALL");
                 }
                 else
                 {
 
-                    string temp3hr = extractFileNamesWRF0p11(_date, _run, modelName[i], "TEMP", "3hr");
+                    //string temp3hr = extractFileNamesWRF0p11(_date, _run, modelName[i], "TEMP", "3hr");
                     string rain3hr = extractFileNamesWRF0p11(_date, _run, modelName[i], "RAIN", "3hr");
                     string rainSum12hr = extractFileNamesWRF0p11(_date, _run, modelName[i], "RAIN-12hr", "3hr");
                     string rainSum24hr = extractFileNamesWRF0p11(_date, _run, modelName[i], "RAIN-24hr", "3hr");
 
                     runSagaCommandZonalForPointsWRF0p11(rain3hr, _date, _run, modelName[i], "3hr", "RAIN", resource._1_SHAPE_FILE_);
-                    runSagaCommandZonalForPointsWRF0p11(temp3hr, _date, _run, modelName[i], "3hr", "TEMP", resource._1_SHAPE_FILE_);
-                    runSagaCommandZonalForPointsRainSum_12_24WRF0p11(rainSum12hr, _date, _run, modelName[i], "3hr", "RAIN-12hr", resource._1_SHAPE_FILE_, "12hr");
-                    runSagaCommandZonalForPointsRainSum_12_24WRF0p11(rainSum24hr, _date, _run, modelName[i], "3hr", "RAIN-24hr", resource._1_SHAPE_FILE_, "24hr");
+                    //runSagaCommandZonalForPointsWRF0p11(temp3hr, _date, _run, modelName[i], "3hr", "TEMP", resource._1_SHAPE_FILE_);
+                    //runSagaCommandZonalForPointsRainSum_12_24WRF0p11(rainSum12hr, _date, _run, modelName[i], "3hr", "RAIN-12hr", resource._1_SHAPE_FILE_, "12hr");
+                    //runSagaCommandZonalForPointsRainSum_12_24WRF0p11(rainSum24hr, _date, _run, modelName[i], "3hr", "RAIN-24hr", resource._1_SHAPE_FILE_, "24hr");
                     runSagaCommandZonalForPointsRainSum_12_24WRF0p11(rainSum24hr, _date, _run, modelName[i], "3hr", "RAIN", resource._1_SHAPE_FILE_, "ALL");
                     runSagaCommandZonalForPointsWRF0p11(rain3hr, _date, _run, modelName[i], "3hr", "RAIN", resource._3_SHAPE_FILE_);
-                    runSagaCommandZonalForPointsWRF0p11(temp3hr, _date, _run, modelName[i], "3hr", "TEMP", resource._3_SHAPE_FILE_);
-                    runSagaCommandZonalForPointsRainSum_12_24WRF0p11(rainSum12hr, _date, _run, modelName[i], "3hr", "RAIN-12hr", resource._3_SHAPE_FILE_, "12hr");
-                    runSagaCommandZonalForPointsRainSum_12_24WRF0p11(rainSum24hr, _date, _run, modelName[i], "3hr", "RAIN-24hr", resource._3_SHAPE_FILE_, "24hr");
+                    //runSagaCommandZonalForPointsWRF0p11(temp3hr, _date, _run, modelName[i], "3hr", "TEMP", resource._3_SHAPE_FILE_);
+                    //runSagaCommandZonalForPointsRainSum_12_24WRF0p11(rainSum12hr, _date, _run, modelName[i], "3hr", "RAIN-12hr", resource._3_SHAPE_FILE_, "12hr");
+                    //runSagaCommandZonalForPointsRainSum_12_24WRF0p11(rainSum24hr, _date, _run, modelName[i], "3hr", "RAIN-24hr", resource._3_SHAPE_FILE_, "24hr");
                     runSagaCommandZonalForPointsRainSum_12_24WRF0p11(rainSum24hr, _date, _run, modelName[i], "3hr", "RAIN", resource._3_SHAPE_FILE_, "ALL");
-                    runSagaCommandZonalForPointsWRF0p11(rain3hr, _date, _run, modelName[i], "3hr", "RAIN", resource._4_SHAPE_FILE_);
-                    runSagaCommandZonalForPointsWRF0p11(temp3hr, _date, _run, modelName[i], "3hr", "TEMP", resource._4_SHAPE_FILE_);
-                    runSagaCommandZonalForPointsRainSum_12_24WRF0p11(rainSum12hr, _date, _run, modelName[i], "3hr", "RAIN-12hr", resource._4_SHAPE_FILE_, "12hr");
-                    runSagaCommandZonalForPointsRainSum_12_24WRF0p11(rainSum24hr, _date, _run, modelName[i], "3hr", "RAIN-24hr", resource._4_SHAPE_FILE_, "24hr");
-                    runSagaCommandZonalForPointsRainSum_12_24WRF0p11(rainSum24hr, _date, _run, modelName[i], "3hr", "RAIN", resource._4_SHAPE_FILE_, "ALL");
+                    //runSagaCommandZonalForPointsWRF0p11(rain3hr, _date, _run, modelName[i], "3hr", "RAIN", resource._4_SHAPE_FILE_);
+                    //runSagaCommandZonalForPointsWRF0p11(temp3hr, _date, _run, modelName[i], "3hr", "TEMP", resource._4_SHAPE_FILE_);
+                    //runSagaCommandZonalForPointsRainSum_12_24WRF0p11(rainSum12hr, _date, _run, modelName[i], "3hr", "RAIN-12hr", resource._4_SHAPE_FILE_, "12hr");
+                    //runSagaCommandZonalForPointsRainSum_12_24WRF0p11(rainSum24hr, _date, _run, modelName[i], "3hr", "RAIN-24hr", resource._4_SHAPE_FILE_, "24hr");
+                    //runSagaCommandZonalForPointsRainSum_12_24WRF0p11(rainSum24hr, _date, _run, modelName[i], "3hr", "RAIN", resource._4_SHAPE_FILE_, "ALL");
                 }
             }
 
@@ -736,9 +736,9 @@ namespace DataManager
         {
             bool status = true;
 
-            string temp1hr = extractFileNamesGFS0p13(_date, _run, "TEMP", "1hr");
-            string rain1hr = extractFileNamesGFS0p13(_date, _run, "RAIN", "1hr");
-            string temp3hr = extractFileNamesGFS0p13(_date, _run, "TEMP", "3hr");
+            //string temp1hr = extractFileNamesGFS0p13(_date, _run, "TEMP", "1hr");
+            //string rain1hr = extractFileNamesGFS0p13(_date, _run, "RAIN", "1hr");
+            //string temp3hr = extractFileNamesGFS0p13(_date, _run, "TEMP", "3hr");
             string rain3hr = extractFileNamesGFS0p13(_date, _run, "RAIN", "3hr");
             string rainSum12hr = extractFileNamesGFS0p13(_date, _run, "RAIN-12hr", "3hr");
             string rainSum24hr = extractFileNamesGFS0p13(_date, _run, "RAIN-24hr", "3hr");
@@ -746,42 +746,42 @@ namespace DataManager
             if (_var == "APCP")
             {
                 
-                string apcp1hr = extractFileNamesGFS0p13(_date, _run, "APCP", "1hr");
+                //string apcp1hr = extractFileNamesGFS0p13(_date, _run, "APCP", "1hr");
                 string apcp3hr = extractFileNamesGFS0p13(_date, _run, "APCP", "3hr");
-                string apcpSum12hr = extractFileNamesGFS0p13(_date, _run, "APCP-12hr", "3hr");
-                string apcpSum24hr = extractFileNamesGFS0p13(_date, _run, "APCP-24hr", "3hr");
+                //string apcpSum12hr = extractFileNamesGFS0p13(_date, _run, "APCP-12hr", "3hr");
+                //string apcpSum24hr = extractFileNamesGFS0p13(_date, _run, "APCP-24hr", "3hr");
 
-                runSagaCommandZonalForPolygonsGFS0p13(apcp1hr, _date, _run, "1hr", "APCP", resource._2_SHPAE_FILE_);
-                runSagaCommandZonalForPolygonsGFS0p13(apcp3hr, _date, _run, "3hr", "APCP", resource._2_SHPAE_FILE_);
-                runSagaCommandZonalForPolygonsGFS0p13(apcp1hr, _date, _run, "1hr", "APCP", resource._5_SHAPE_FILE);
-                runSagaCommandZonalForPolygonsGFS0p13(apcp3hr, _date, _run, "3hr", "APCP", resource._5_SHAPE_FILE);
-                runSagaCommandZonalForPolygonsRainSum_12_24GFS0p13(apcpSum12hr, _date, _run, "3hr", "APCP-12hr", resource._2_SHPAE_FILE_, "12hr");
-                runSagaCommandZonalForPolygonsRainSum_12_24GFS0p13(apcpSum24hr, _date, _run, "3hr", "APCP-24hr", resource._2_SHPAE_FILE_, "24hr");
+                //runSagaCommandZonalForPolygonsGFS0p13(apcp1hr, _date, _run, "1hr", "APCP", resource._2_SHPAE_FILE_);
+                //runSagaCommandZonalForPolygonsGFS0p13(apcp3hr, _date, _run, "3hr", "APCP", resource._2_SHPAE_FILE_);
+                //runSagaCommandZonalForPolygonsGFS0p13(apcp1hr, _date, _run, "1hr", "APCP", resource._5_SHAPE_FILE);
+                //runSagaCommandZonalForPolygonsGFS0p13(apcp3hr, _date, _run, "3hr", "APCP", resource._5_SHAPE_FILE);
+                //runSagaCommandZonalForPolygonsRainSum_12_24GFS0p13(apcpSum12hr, _date, _run, "3hr", "APCP-12hr", resource._2_SHPAE_FILE_, "12hr");
+                //runSagaCommandZonalForPolygonsRainSum_12_24GFS0p13(apcpSum24hr, _date, _run, "3hr", "APCP-24hr", resource._2_SHPAE_FILE_, "24hr");
                 runSagaCommandZonalForPolygonsRainSum_12_24GFS0p13(apcp3hr, _date, _run, "3hr", "APCP", resource._2_SHPAE_FILE_, "ALL");
                 runSagaCommandZonalForPolygonsRainSum_12_24GFS0p13(apcp3hr, _date, _run, "3hr", "APCP", resource._2_SHPAE_FILE_, "ALL_MAX");
-                runSagaCommandZonalForPolygonsRainSum_12_24GFS0p13(apcp1hr, _date, _run, "1hr", "APCP", resource._2_SHPAE_FILE_, "ALL");
-                runSagaCommandZonalForPolygonsRainSum_12_24GFS0p13(apcpSum12hr, _date, _run, "3hr", "APCP-12hr", resource._5_SHAPE_FILE, "12hr");
-                runSagaCommandZonalForPolygonsRainSum_12_24GFS0p13(apcpSum24hr, _date, _run, "3hr", "APCP-24hr", resource._5_SHAPE_FILE, "24hr");
+                //runSagaCommandZonalForPolygonsRainSum_12_24GFS0p13(apcp1hr, _date, _run, "1hr", "APCP", resource._2_SHPAE_FILE_, "ALL");
+                //runSagaCommandZonalForPolygonsRainSum_12_24GFS0p13(apcpSum12hr, _date, _run, "3hr", "APCP-12hr", resource._5_SHAPE_FILE, "12hr");
+                //runSagaCommandZonalForPolygonsRainSum_12_24GFS0p13(apcpSum24hr, _date, _run, "3hr", "APCP-24hr", resource._5_SHAPE_FILE, "24hr");
                 runSagaCommandZonalForPolygonsRainSum_12_24GFS0p13(apcp3hr, _date, _run, "3hr", "APCP", resource._5_SHAPE_FILE, "ALL");
                 runSagaCommandZonalForPolygonsRainSum_12_24GFS0p13(apcp3hr, _date, _run, "3hr", "APCP", resource._5_SHAPE_FILE, "ALL_MAX");
-                runSagaCommandZonalForPolygonsRainSum_12_24GFS0p13(apcp1hr, _date, _run, "1hr", "APCP", resource._5_SHAPE_FILE, "ALL");
+                //runSagaCommandZonalForPolygonsRainSum_12_24GFS0p13(apcp1hr, _date, _run, "1hr", "APCP", resource._5_SHAPE_FILE, "ALL");
                 return status;
             }
-            runSagaCommandZonalForPolygonsGFS0p13(temp1hr, _date, _run, "1hr", "TEMP", resource._2_SHPAE_FILE_);
-            runSagaCommandZonalForPolygonsGFS0p13(temp3hr, _date, _run, "3hr", "TEMP", resource._2_SHPAE_FILE_);
-            runSagaCommandZonalForPolygonsGFS0p13(temp1hr, _date, _run, "1hr", "TEMP", resource._5_SHAPE_FILE);
-            runSagaCommandZonalForPolygonsGFS0p13(temp3hr, _date, _run, "3hr", "TEMP", resource._5_SHAPE_FILE);
-            runSagaCommandZonalForPolygonsGFS0p13(temp3hr, _date, _run, "3hr", "TEMP", resource._5_SHAPE_FILE);
-            runSagaCommandZonalForPolygonsRainSum_12_24GFS0p13(rainSum12hr, _date, _run, "3hr", "RAIN-12hr", resource._2_SHPAE_FILE_, "12hr");
-            runSagaCommandZonalForPolygonsRainSum_12_24GFS0p13(rainSum24hr, _date, _run, "3hr", "RAIN-24hr", resource._2_SHPAE_FILE_, "24hr");
+            //runSagaCommandZonalForPolygonsGFS0p13(temp1hr, _date, _run, "1hr", "TEMP", resource._2_SHPAE_FILE_);
+            //runSagaCommandZonalForPolygonsGFS0p13(temp3hr, _date, _run, "3hr", "TEMP", resource._2_SHPAE_FILE_);
+            //runSagaCommandZonalForPolygonsGFS0p13(temp1hr, _date, _run, "1hr", "TEMP", resource._5_SHAPE_FILE);
+            //runSagaCommandZonalForPolygonsGFS0p13(temp3hr, _date, _run, "3hr", "TEMP", resource._5_SHAPE_FILE);
+            //runSagaCommandZonalForPolygonsGFS0p13(temp3hr, _date, _run, "3hr", "TEMP", resource._5_SHAPE_FILE);
+            //runSagaCommandZonalForPolygonsRainSum_12_24GFS0p13(rainSum12hr, _date, _run, "3hr", "RAIN-12hr", resource._2_SHPAE_FILE_, "12hr");
+            //runSagaCommandZonalForPolygonsRainSum_12_24GFS0p13(rainSum24hr, _date, _run, "3hr", "RAIN-24hr", resource._2_SHPAE_FILE_, "24hr");
             runSagaCommandZonalForPolygonsRainSum_12_24GFS0p13(rain3hr, _date, _run, "3hr", "RAIN", resource._2_SHPAE_FILE_, "ALL");
             runSagaCommandZonalForPolygonsRainSum_12_24GFS0p13(rain3hr, _date, _run, "3hr", "RAIN", resource._2_SHPAE_FILE_, "ALL_MAX");
-            runSagaCommandZonalForPolygonsRainSum_12_24GFS0p13(rain1hr, _date, _run, "1hr", "RAIN", resource._2_SHPAE_FILE_, "ALL");
-            runSagaCommandZonalForPolygonsRainSum_12_24GFS0p13(rainSum12hr, _date, _run, "3hr", "RAIN-12hr", resource._5_SHAPE_FILE, "12hr");
-            runSagaCommandZonalForPolygonsRainSum_12_24GFS0p13(rainSum24hr, _date, _run, "3hr", "RAIN-24hr", resource._5_SHAPE_FILE, "24hr");
+            //runSagaCommandZonalForPolygonsRainSum_12_24GFS0p13(rain1hr, _date, _run, "1hr", "RAIN", resource._2_SHPAE_FILE_, "ALL");
+            //runSagaCommandZonalForPolygonsRainSum_12_24GFS0p13(rainSum12hr, _date, _run, "3hr", "RAIN-12hr", resource._5_SHAPE_FILE, "12hr");
+            //runSagaCommandZonalForPolygonsRainSum_12_24GFS0p13(rainSum24hr, _date, _run, "3hr", "RAIN-24hr", resource._5_SHAPE_FILE, "24hr");
             runSagaCommandZonalForPolygonsRainSum_12_24GFS0p13(rain3hr, _date, _run, "3hr", "RAIN", resource._5_SHAPE_FILE, "ALL");
             runSagaCommandZonalForPolygonsRainSum_12_24GFS0p13(rain3hr, _date, _run, "3hr", "RAIN", resource._5_SHAPE_FILE, "ALL_MAX");
-            runSagaCommandZonalForPolygonsRainSum_12_24GFS0p13(rain1hr, _date, _run, "1hr", "RAIN", resource._5_SHAPE_FILE, "ALL");
+            //runSagaCommandZonalForPolygonsRainSum_12_24GFS0p13(rain1hr, _date, _run, "1hr", "RAIN", resource._5_SHAPE_FILE, "ALL");
 
             return status;
         }
