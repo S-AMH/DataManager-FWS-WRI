@@ -520,6 +520,15 @@ namespace DataManager {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to C:\FWS\DB\WebGIS-test\UploadGFS.py.
+        /// </summary>
+        internal static string testUploadGFS {
+            get {
+                return ResourceManager.GetString("testUploadGFS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to C:\FWS\DB\WebGIS-test\UploadWRF.py.
         /// </summary>
         internal static string testUploadWRF {

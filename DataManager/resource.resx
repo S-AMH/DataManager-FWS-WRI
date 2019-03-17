@@ -380,4 +380,7 @@
   <data name="testUploadWRF" xml:space="preserve">
     <value>C:\FWS\DB\WebGIS-test\UploadWRF.py</value>
   </data>
+  <data name="testUploadGFS" xml:space="preserve">
+    <value>C:\FWS\DB\WebGIS-test\UploadGFS.py</value>
+  </data>
 </root>

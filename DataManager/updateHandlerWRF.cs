@@ -194,8 +194,7 @@ namespace DataManager
             Console.WriteLine("Publishing New Services: \n \t Status:  Started.");
             publishWRF("APCP");
 
-            Console.WriteLine("TEST UPLOAD WRF...");
-            TestUploadWRF(date, run);
+
 
             FileInfo[] tiffFiles = new DirectoryInfo(resource.wrfTempDir).GetFiles("*.tif", SearchOption.AllDirectories).Select(fn => new FileInfo(fn.FullName)).OrderBy(f => f.Name).ToArray();
 
@@ -206,7 +205,8 @@ namespace DataManager
 
             foreach (var f in xmlFiles)
                 File.Delete(f.FullName);
-
+            Console.WriteLine("TEST UPLOAD WRF...");
+            TestUploadWRF(date, run);
             string[] configNames = { "ensemble", "ferrier", "lin", "wsm6" };
 
             return true;

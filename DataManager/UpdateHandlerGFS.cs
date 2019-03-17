@@ -31,6 +31,15 @@ namespace DataManager
                 return true;
             }
         }
+        public static bool testUploadGFS(string date, string run)
+        {
+            System.Diagnostics.Process cmd = new System.Diagnostics.Process();
+            cmd.StartInfo.FileName = @"cmd.exe";
+            cmd.StartInfo.Arguments = @"/C " + "python " + resource.testUploadGFS + " " + date + run;
+            cmd.Start();
+            cmd.WaitForExit();
+            return true;
+        }
         public static bool publishGFS(string variable="RAIN")
         {
             if (variable == "APCP")
@@ -288,6 +297,8 @@ namespace DataManager
                 Console.WriteLine("Publishing Changes to web...");
                 publishGFS("APCP");
 
+
+
                 obj_writer = new StreamWriter(resource.downloadQuery);
                 foreach (var f in downloadQueries)
                     obj_writer.WriteLine(f);
@@ -295,7 +306,8 @@ namespace DataManager
                 obj_writer = new StreamWriter(resource.DownloadLog, true);
                 obj_writer.WriteLine(queryDate[0] + "-" + queryDate[1]);
                 obj_writer.Close();
-
+                Console.WriteLine("Running TEST GFS UPLOAD...");
+                testUploadGFS(queryDate[0], queryDate[1]);
 
             }
 
