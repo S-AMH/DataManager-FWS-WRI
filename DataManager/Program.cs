@@ -2,14 +2,6 @@
  * 
  *  @Author: S.AmirMohammad Hasanli <amir.hasanli@ut.ac.ir>
  *  @Company: Water Research Institute <www.wri.ac.ir>
- *  
- *  Automation Program for downloading and processing GFS model.
- *      Supported resoloutions: 0.25P and 0.13P
- *      
- *  Using following APIs:
- *          I)GDAL <www.gdal.org>
- *          II)Saga GIS <www.saga-gis.org> 
- *          III)Curl:\\ <https://curl.haxx.se/>
  * 
  */
 
