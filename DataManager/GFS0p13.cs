@@ -10,6 +10,15 @@ namespace DataManager
     class GFS0p13
     {
 
+        static string threeDigitNumber(int _num)
+        {
+            if (_num < 10)
+                return "00" + Convert.ToString(_num);
+            else if (_num < 100)
+                return "0" + Convert.ToString(_num);
+            else
+                return Convert.ToString(_num);
+        }
         static string twoDigitNumber(int _num)
         {
             if (_num < 10)
@@ -29,7 +38,8 @@ namespace DataManager
                 year, month, day, _run, "3hr", "CumulicativeRaster3hr"), true);
             Directory.CreateDirectory(Path.Combine(resource.GFS0p13RawDataDB,
                     year, month, day, _run, "3hr", "CumulicativeRaster3hr"));
-            FileInfo[] inputs = new DirectoryInfo(Path.Combine(resource.GFS0p13RawDataDB, year, month, day, _run,"3hr","RAIN")).GetFiles("*.tif").Select(fn => new FileInfo(fn.FullName)).OrderBy(f => f.Name).ToArray();
+            FileInfo[] inputs = new DirectoryInfo(Path.Combine(resource.GFS0p13RawDataDB, year, month, day, _run,"3hr","RAIN")).GetFiles("*.tif").ToArray();
+            Array.Sort(inputs, ATG.atgMethods.CompareNatural);
             List<string> sumInputs = new List<string>();
             for (int i = 1; i < inputs.Count()+1; i++)
             {
@@ -54,7 +64,8 @@ namespace DataManager
                 year, month, day, _run, "3hr", "CumulicativeRaster3hrAPCP"), true);
             Directory.CreateDirectory(Path.Combine(resource.GFS0p13RawDataDB,
                     year, month, day, _run, "3hr", "CumulicativeRaster3hrAPCP"));
-            FileInfo[] inputs = new DirectoryInfo(Path.Combine(resource.GFS0p13RawDataDB, year, month, day, _run, "3hr", "APCP")).GetFiles("*.tif").Select(fn => new FileInfo(fn.FullName)).OrderBy(f => f.Name).ToArray();
+            FileInfo[] inputs = new DirectoryInfo(Path.Combine(resource.GFS0p13RawDataDB, year, month, day, _run, "3hr", "APCP")).GetFiles("*.tif").ToArray();
+            Array.Sort(inputs, ATG.atgMethods.CompareNatural);
             List<string> sumInputs = new List<string>();
             for (int i = 1; i < inputs.Count() + 1; i++)
             {
@@ -82,7 +93,7 @@ namespace DataManager
                     url = @"https://nomads.ncep.noaa.gov/cgi-bin/filter_gfs_sflux.pl?file=gfs.t";
                     url += _run;
                     url += "z.sfluxgrbf";
-                    url += twoDigitNumber(i);
+                    url += threeDigitNumber(i);
                     url += ".grib2&";
                     for (int j = 0; j < levels.Count; j++)
                         url += levels[j] + "=on&";
@@ -97,7 +108,7 @@ namespace DataManager
                     url += "&bottomlat=";
                     url += resource.bottomlat;
                     url += @"&dir=%2Fgfs.";
-                    url += _date + _run;
+                    url += _date + "%2F" + _run;
                     urls.Enqueue(url);
                 }
                 for (int i = 123; i < 243; i += 3)
@@ -105,7 +116,7 @@ namespace DataManager
                     url = @"https://nomads.ncep.noaa.gov/cgi-bin/filter_gfs_sflux.pl?file=gfs.t";
                     url += _run;
                     url += "z.sfluxgrbf";
-                    url += twoDigitNumber(i);
+                    url += threeDigitNumber(i);
                     url += ".grib2&";
                     for (int j = 0; j < levels.Count; j++)
                         url += levels[j] + "=on&";
@@ -120,7 +131,7 @@ namespace DataManager
                     url += "&bottomlat=";
                     url += resource.bottomlat;
                     url += @"&dir=%2Fgfs.";
-                    url += _date + _run;
+                    url += _date + "%2F" + _run;
                     urls.Enqueue(url);
                 }
             }
@@ -131,7 +142,7 @@ namespace DataManager
                 url = @"https://nomads.ncep.noaa.gov/cgi-bin/filter_gfs_sflux.pl?file=gfs.t";
                 url += _run;
                 url += "z.sfluxgrbf";
-                url += twoDigitNumber(1);
+                url += threeDigitNumber(1);
                 url += ".grib2&";
                 for (int j = 0; j < levels.Count; j++)
                     url += levels[j] + "=on&";
@@ -146,7 +157,7 @@ namespace DataManager
                 url += "&bottomlat=";
                 url += resource.bottomlat;
                 url += @"&dir=%2Fgfs.";
-                url += _date + _run;
+                url += _date + "%2F" + _run;
                 urls.Enqueue(url);
 
             }
@@ -158,7 +169,8 @@ namespace DataManager
             DirectoryInfo dirInfo = new DirectoryInfo(resource.GFS0p13DownloadOutputDir);
             if (init != 0)
                 dirInfo = new DirectoryInfo(resource.GFS0p13InitDownloadOutputDir);
-            FileInfo[] fileInfo = dirInfo.GetFiles().Select(fn => new FileInfo(fn.FullName)).OrderBy(f => f.Name).ToArray();
+            FileInfo[] fileInfo = dirInfo.GetFiles().ToArray();
+            Array.Sort(fileInfo, ATG.atgMethods.CompareNatural);
             string outAdress = "";
             if (_var == "TEMP")
                 outAdress = resource.GFS0p13TiffDirTEMP;
@@ -188,7 +200,8 @@ namespace DataManager
         public static bool ConvertPRATE2APCP()
         {
             DirectoryInfo dirPrate = new DirectoryInfo(resource.GFS0p13TiffDirPRate);
-            FileInfo[] prateFiles = dirPrate.GetFiles().Select(fn => new FileInfo(fn.FullName)).OrderBy(f => f.Name).ToArray();
+            FileInfo[] prateFiles = dirPrate.GetFiles().ToArray();
+            Array.Sort(prateFiles, ATG.atgMethods.CompareNatural);
 
             if (Directory.Exists(resource.GFS0p13TiffDirAPCP))
                 Directory.Delete(resource.GFS0p13TiffDirAPCP, true);
@@ -215,8 +228,10 @@ namespace DataManager
         }
         public static bool convertAPCP2RAIN()
         {
-            FileInfo[] tempFiles = new DirectoryInfo(resource.GFS0p13TiffDirTEMP).GetFiles().Select(fn => new FileInfo(fn.FullName)).OrderBy(f => f.Name).ToArray();
-            FileInfo[] apcpFiles = new DirectoryInfo(resource.GFS0p13TiffDirAPCP).GetFiles().Select(fn => new FileInfo(fn.FullName)).OrderBy(f => f.Name).ToArray();
+            FileInfo[] tempFiles = new DirectoryInfo(resource.GFS0p13TiffDirTEMP).GetFiles().ToArray();
+            Array.Sort(tempFiles, ATG.atgMethods.CompareNatural);
+            FileInfo[] apcpFiles = new DirectoryInfo(resource.GFS0p13TiffDirAPCP).GetFiles().ToArray();
+            Array.Sort(apcpFiles, ATG.atgMethods.CompareNatural);
             if (Directory.Exists(resource.GFS0p13TiffDirRAIN))
                 Directory.Delete(resource.GFS0p13TiffDirRAIN, true);
             Directory.CreateDirectory(resource.GFS0p13TiffDirRAIN);
@@ -268,7 +283,8 @@ namespace DataManager
                 Directory.Delete(outputDir, true);
             Directory.CreateDirectory(outputDir);
 
-            FileInfo[] inputFiles = new DirectoryInfo(inputDir).GetFiles().Select(fn => new FileInfo(fn.FullName)).OrderBy(f => f.Name).ToArray();
+            FileInfo[] inputFiles = new DirectoryInfo(inputDir).GetFiles().ToArray();
+            Array.Sort(inputFiles, ATG.atgMethods.CompareNatural);
 
             DateTime represetedTime = new DateTime(Convert.ToInt16(_year), Convert.ToInt16(_month), Convert.ToInt16(_day), Convert.ToInt16(_run), 0, 0);
 
@@ -311,7 +327,8 @@ namespace DataManager
                 Directory.Delete(outputDir, true);
             Directory.CreateDirectory(outputDir);
 
-            FileInfo[] inputFiles = new DirectoryInfo(inputDir).GetFiles().Select(fn => new FileInfo(fn.FullName)).OrderBy(f => f.Name).ToArray();
+            FileInfo[] inputFiles = new DirectoryInfo(inputDir).GetFiles().ToArray();
+            Array.Sort(inputFiles, ATG.atgMethods.CompareNatural);
 
             DateTime represetedTime = new DateTime(Convert.ToInt16(_year), Convert.ToInt16(_month), Convert.ToInt16(_day), Convert.ToInt16(_run), 0, 0);
             //DEBUG:
@@ -391,7 +408,8 @@ namespace DataManager
             string year = _date.Substring(0, 4);
             string month = _date.Substring(4, 2);
             string day = _date.Substring(6, 2);
-            FileInfo[] inputFiles = new DirectoryInfo(resource.GFS0p13TiffDirTEMP).GetFiles().Select(fn => new FileInfo(fn.FullName)).OrderBy(f => f.Name).ToArray();
+            FileInfo[] inputFiles = new DirectoryInfo(resource.GFS0p13TiffDirTEMP).GetFiles().ToArray();
+            Array.Sort(inputFiles, ATG.atgMethods.CompareNatural);
             DateTime represetedTime = new DateTime(Convert.ToInt16(year), Convert.ToInt16(month), Convert.ToInt16(day), Convert.ToInt16(_run), 0, 0);
             if (Directory.Exists(Path.Combine(resource.GFS0p13RawDataDB, year, month, day, _run, "3hr", "TEMP")))
                 Directory.Delete(Path.Combine(resource.GFS0p13RawDataDB, year, month, day, _run, "3hr", "TEMP"), true);
@@ -434,7 +452,8 @@ namespace DataManager
             string month = _date.Substring(4, 2);
             string day = _date.Substring(6, 2);
 
-            FileInfo[] files = new DirectoryInfo(resource.GFS0p13TiffDirSNOW).GetFiles().Select(fn => new FileInfo(fn.FullName)).OrderBy(f => f.Name).ToArray();
+            FileInfo[] files = new DirectoryInfo(resource.GFS0p13TiffDirSNOW).GetFiles().ToArray();
+            Array.Sort(files, ATG.atgMethods.CompareNatural);
             if (Directory.Exists(Path.Combine(resource.GFS0p13RawDataDB, year, month, day, _run, "3hr", "SNOW")))
                 Directory.Delete(Path.Combine(resource.GFS0p13RawDataDB, year, month, day, _run, "3hr", "SNOW"), true);
             Directory.CreateDirectory(Path.Combine(resource.GFS0p13RawDataDB, year, month, day, _run, "3hr", "SNOW"));
@@ -445,7 +464,8 @@ namespace DataManager
                 Directory.Delete(Path.Combine(resource.GFS0p13RawDataDB, year, month, day, _run, "3hr", "SOIL"), true);
             Directory.CreateDirectory(Path.Combine(resource.GFS0p13RawDataDB, year, month, day, _run, "3hr", "SOIL"));
 
-            files = new DirectoryInfo(resource.GFS0p13TiffDirSOILW).GetFiles().Select(fn => new FileInfo(fn.FullName)).OrderBy(f => f.Name).ToArray();
+            files = new DirectoryInfo(resource.GFS0p13TiffDirSOILW).GetFiles().ToArray();
+            Array.Sort(files, ATG.atgMethods.CompareNatural);
 
             foreach (var f in files)
                 File.Copy(f.FullName, Path.Combine(resource.GFS0p13RawDataDB, year, month, day, _run, "3hr", "SOIL", f.Name));
@@ -461,7 +481,8 @@ namespace DataManager
             if (Directory.Exists(Path.Combine(resource.GFS0p13RawDataDB, year, month, day, _run, "3hr", "RAIN-24hr")))
                 Directory.Delete(Path.Combine(resource.GFS0p13RawDataDB, year, month, day, _run, "3hr", "RAIN-24hr"),true);
             Directory.CreateDirectory(Path.Combine(resource.GFS0p13RawDataDB, year, month, day, _run, "3hr", "RAIN-24hr"));
-            FileInfo[] files = new DirectoryInfo(Path.Combine(resource.GFS0p13RawDataDB, year, month, day, _run, "3hr", "RAIN")).GetFiles().Select(fn => new FileInfo(fn.FullName)).OrderBy(f => f.Name).ToArray();
+            FileInfo[] files = new DirectoryInfo(Path.Combine(resource.GFS0p13RawDataDB, year, month, day, _run, "3hr", "RAIN")).GetFiles().ToArray();
+            Array.Sort(files, ATG.atgMethods.CompareNatural);
             for (int i = 0; i <= (files.Length / 8) - 1; i ++)
             {
                 List<string> input = new List<string>();
@@ -485,7 +506,9 @@ namespace DataManager
             if (Directory.Exists(Path.Combine(resource.GFS0p13RawDataDB, year, month, day, _run, "3hr", "APCP-24hr")))
                 Directory.Delete(Path.Combine(resource.GFS0p13RawDataDB, year, month, day, _run, "3hr", "APCP-24hr"), true);
             Directory.CreateDirectory(Path.Combine(resource.GFS0p13RawDataDB, year, month, day, _run, "3hr", "APCP-24hr"));
-            FileInfo[] files = new DirectoryInfo(Path.Combine(resource.GFS0p13RawDataDB, year, month, day, _run, "3hr", "APCP")).GetFiles().Select(fn => new FileInfo(fn.FullName)).OrderBy(f => f.Name).ToArray();
+            FileInfo[] files = new DirectoryInfo(Path.Combine(resource.GFS0p13RawDataDB, year, month, day, _run, "3hr", "APCP")).GetFiles().ToArray();
+            Array.Sort(files, ATG.atgMethods.CompareNatural);
+
             for (int i = 0; i <= (files.Length / 8) - 1; i++)
             {
                 List<string> input = new List<string>();
@@ -509,7 +532,8 @@ namespace DataManager
             if (Directory.Exists(Path.Combine(resource.GFS0p13RawDataDB, year, month, day, _run, "3hr", "RAIN-12hr")))
                 Directory.Delete(Path.Combine(resource.GFS0p13RawDataDB, year, month, day, _run, "3hr", "RAIN-12hr"), true);
             Directory.CreateDirectory(Path.Combine(resource.GFS0p13RawDataDB, year, month, day, _run,"3hr", "RAIN-12hr"));
-            FileInfo[] files = new DirectoryInfo(Path.Combine(resource.GFS0p13RawDataDB, year, month, day, _run,"3hr", "RAIN")).GetFiles().Select(fn => new FileInfo(fn.FullName)).OrderBy(f => f.Name).ToArray();
+            FileInfo[] files = new DirectoryInfo(Path.Combine(resource.GFS0p13RawDataDB, year, month, day, _run,"3hr", "RAIN")).GetFiles().ToArray();
+            Array.Sort(files, ATG.atgMethods.CompareNatural);
             for (int i = 0; i <= (files.Length / 4) - 1; i ++)
             {
                 List<string> input = new List<string>();
@@ -532,7 +556,9 @@ namespace DataManager
             if (Directory.Exists(Path.Combine(resource.GFS0p13RawDataDB, year, month, day, _run, "3hr", "APCP-12hr")))
                 Directory.Delete(Path.Combine(resource.GFS0p13RawDataDB, year, month, day, _run, "3hr", "APCP-12hr"), true);
             Directory.CreateDirectory(Path.Combine(resource.GFS0p13RawDataDB, year, month, day, _run, "3hr", "APCP-12hr"));
-            FileInfo[] files = new DirectoryInfo(Path.Combine(resource.GFS0p13RawDataDB, year, month, day, _run, "3hr", "APCP")).GetFiles().Select(fn => new FileInfo(fn.FullName)).OrderBy(f => f.Name).ToArray();
+            FileInfo[] files = new DirectoryInfo(Path.Combine(resource.GFS0p13RawDataDB, year, month, day, _run, "3hr", "APCP")).GetFiles().ToArray();
+            Array.Sort(files, ATG.atgMethods.CompareNatural);
+
             for (int i = 0; i <= (files.Length / 4) - 1; i++)
             {
                 List<string> input = new List<string>();
@@ -568,6 +594,7 @@ namespace DataManager
                 Path.Combine(resource.GFS0p13RawDataDB,currnetDate.AddDays(-1).Year.ToString()
                 ,twoDigitNumber(currnetDate.AddDays(-1).Month)
                 ,twoDigitNumber(currnetDate.AddDays(-1).Day), _run, "3hr", variable) , "*.tif").Select(fn => new FileInfo(fn)).OrderBy(f => f.Name).ToArray();
+            Array.Sort(inputFiles, ATG.atgMethods.CompareNatural);
             int index = 0;
             if (Directory.Exists(Path.Combine(resource.GFS0p13RawDataDB, currnetDate.AddDays(-1).Year.ToString()
                 , twoDigitNumber(currnetDate.AddDays(-1).Month)

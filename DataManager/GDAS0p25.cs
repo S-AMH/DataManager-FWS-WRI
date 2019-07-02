@@ -57,6 +57,7 @@ namespace DataManager
             Queue<Tuple<string, string>> fileNames = new Queue<Tuple<string, string>>();
             DirectoryInfo dirInfo = new DirectoryInfo(resource.GDAS0p25DownloadOutputDir);
             FileInfo[] fileInfo = dirInfo.GetFiles().Select(fn => new FileInfo(fn.FullName)).OrderBy(f => f.Name).ToArray();
+            Array.Sort(fileInfo, ATG.atgMethods.CompareNatural);
             string outAdress = "";
             if (_var == "TEMP")
                 outAdress = resource.GDAS0p25TiffDirTEMP;

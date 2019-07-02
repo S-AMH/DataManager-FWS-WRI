@@ -115,6 +115,15 @@ namespace DataManager {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to C:\FWS\DB\tmpFiles\CurrentIconDateAndRun.txt.
+        /// </summary>
+        internal static string CurrentICONDateAndRun {
+            get {
+                return ResourceManager.GetString("CurrentICONDateAndRun", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to C:\FWS\DB\tmpFiles\~DBUpdate.
         /// </summary>
         internal static string DBUpdate {
@@ -138,6 +147,24 @@ namespace DataManager {
         internal static string downloadQuery {
             get {
                 return ResourceManager.GetString("downloadQuery", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to C:\IranFWS\SiteUpdateNotification.txt.
+        /// </summary>
+        internal static string emailAddresses {
+            get {
+                return ResourceManager.GetString("emailAddresses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to C:\FWS\DB\tmpFiles\notificationBody.txt.
+        /// </summary>
+        internal static string emailBody {
+            get {
+                return ResourceManager.GetString("emailBody", resourceCulture);
             }
         }
         
@@ -457,6 +484,60 @@ namespace DataManager {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to \\10.0.0.146\Share\ICON-I.
+        /// </summary>
+        internal static string ICON_DownloadedFiles {
+            get {
+                return ResourceManager.GetString("ICON_DownloadedFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to \\10.0.0.146\Share\ICON-O.
+        /// </summary>
+        internal static string ICON_Grb2 {
+            get {
+                return ResourceManager.GetString("ICON_Grb2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to C:\FWS\DB\processedData\ICON\0.125.
+        /// </summary>
+        internal static string ICON_ProccesedDB {
+            get {
+                return ResourceManager.GetString("ICON_ProccesedDB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to C:\FWS\DB\rawData\ICON\0.125.
+        /// </summary>
+        internal static string ICON_RawDB {
+            get {
+                return ResourceManager.GetString("ICON_RawDB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to C:\IranFWS\DataManager\icon\.
+        /// </summary>
+        internal static string ICON_Tiff {
+            get {
+                return ResourceManager.GetString("ICON_Tiff", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to C:\FWS\DB\tmpFiles\IconFlag.
+        /// </summary>
+        internal static string IconFlag {
+            get {
+                return ResourceManager.GetString("IconFlag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 43.
         /// </summary>
         internal static string leftlon {
@@ -520,7 +601,7 @@ namespace DataManager {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to C:\FWS\DB\WebGIS-test\UploadGFS.py.
+        ///   Looks up a localized string similar to C:\FWS\DB\WebGIS\UploadGFS.py.
         /// </summary>
         internal static string testUploadGFS {
             get {
@@ -529,7 +610,16 @@ namespace DataManager {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to C:\FWS\DB\WebGIS-test\UploadWRF.py.
+        ///   Looks up a localized string similar to C:\FWS\DB\WebGIS\UploadICON.py.
+        /// </summary>
+        internal static string testUploadICON {
+            get {
+                return ResourceManager.GetString("testUploadICON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to C:\FWS\DB\WebGIS\UploadWRF.py.
         /// </summary>
         internal static string testUploadWRF {
             get {

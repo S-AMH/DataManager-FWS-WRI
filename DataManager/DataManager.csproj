@@ -136,12 +136,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ATGmethds.cs" />
     <Compile Include="Download.cs" />
     <Compile Include="GdalConfiguration.cs" />
     <Compile Include="GDAS0p25.cs" />
     <Compile Include="GFS0p13.cs" />
     <Compile Include="GFS0p25.cs" />
     <Compile Include="Grib2Geotiff.cs" />
+    <Compile Include="ICON.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -152,7 +154,9 @@
       <DependentUpon>resource.resx</DependentUpon>
     </Compile>
     <Compile Include="SagaProcess.cs" />
+    <Compile Include="SendEmail.cs" />
     <Compile Include="UpdateHandlerGFS.cs" />
+    <Compile Include="UpdateHandlerICON.cs" />
     <Compile Include="updateHandlerWRF.cs" />
     <Compile Include="WRF0p11.cs" />
   </ItemGroup>
@@ -178,6 +182,7 @@
     <EmbeddedResource Include="resource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>resource.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

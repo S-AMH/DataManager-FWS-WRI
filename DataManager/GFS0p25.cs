@@ -122,6 +122,7 @@ namespace DataManager
             if (init != 0)
                 dirInfo = new DirectoryInfo(resource.GFS0p25InitDownloadOutputDir);
             FileInfo[] fileInfo = dirInfo.GetFiles().Select(fn => new FileInfo(fn.FullName)).OrderBy(f => f.Name).ToArray();
+            Array.Sort(fileInfo, ATG.atgMethods.CompareNatural);
             string outAdress = "";
             if (_var == "TEMP")
                 outAdress = resource.GFS0p25TiffDirTEMP;
@@ -139,7 +140,9 @@ namespace DataManager
         public static bool convertAPCP2RAIN()
         {
             FileInfo[] tempFiles = new DirectoryInfo(resource.GFS0p25TiffDirTEMP).GetFiles().Select(fn => new FileInfo(fn.FullName)).OrderBy(f => f.Name).ToArray();
+            Array.Sort(tempFiles, ATG.atgMethods.CompareNatural);
             FileInfo[] apcpFiles = new DirectoryInfo(resource.GFS0p25TiffDirAPCP).GetFiles().Select(fn => new FileInfo(fn.FullName)).OrderBy(f => f.Name).ToArray();
+            Array.Sort(apcpFiles, ATG.atgMethods.CompareNatural);
             Queue<Tuple<string, string, string>> inputs = new Queue<Tuple<string, string, string>>();
             for (int i = 0; i < tempFiles.Length; i++)
                 if (tempFiles[i].Name == apcpFiles[i].Name)
@@ -189,6 +192,7 @@ namespace DataManager
             Directory.CreateDirectory(outputDir);
 
             FileInfo[] inputFiles = new DirectoryInfo(inputDir).GetFiles().Select(fn => new FileInfo(fn.FullName)).OrderBy(f => f.Name).ToArray();
+            Array.Sort(inputFiles, ATG.atgMethods.CompareNatural);
             DateTime represetedTime = new DateTime(Convert.ToInt16(_year), Convert.ToInt16(_month), Convert.ToInt16(_day), Convert.ToInt16(_run), 0, 0);
             for (int i = 0; i < 120; i++)
             {
@@ -225,6 +229,7 @@ namespace DataManager
             DateTime represetedTime = new DateTime(Convert.ToInt16(_year), Convert.ToInt16(_month), Convert.ToInt16(_day), Convert.ToInt16(_run), 0, 0);
 
             FileInfo[] inputFiles = new DirectoryInfo(inputDir).GetFiles().Select(fn => new FileInfo(fn.FullName)).OrderBy(f => f.Name).ToArray();
+            Array.Sort(inputFiles, ATG.atgMethods.CompareNatural);
             for (int i = 0; i <= 120; i += 3)
             {
                 represetedTime = represetedTime.AddHours(3);
@@ -270,6 +275,7 @@ namespace DataManager
             string month = _date.Substring(4, 2);
             string day = _date.Substring(6, 2);
             FileInfo[] inputFiles = new DirectoryInfo(resource.GFS0p25TiffDirTEMP).GetFiles().Select(fn => new FileInfo(fn.FullName)).OrderBy(f => f.Name).ToArray();
+            Array.Sort(inputFiles, ATG.atgMethods.CompareNatural);
             DateTime represetedTime = new DateTime(Convert.ToInt16(year), Convert.ToInt16(month), Convert.ToInt16(day), Convert.ToInt16(_run), 0, 0);
             Directory.CreateDirectory(Path.Combine(resource.gfs0p25RawDataDB, year, month, day, _run, "3hr", "TEMP"));
             for (int i = 2; i < 123; i += 3)
@@ -312,11 +318,13 @@ namespace DataManager
             string day = _date.Substring(6, 2);
 
             FileInfo[] files = new DirectoryInfo(resource.GFS0p25TiffDirSNOW).GetFiles().Select(fn => new FileInfo(fn.FullName)).OrderBy(f => f.Name).ToArray();
+            Array.Sort(files, ATG.atgMethods.CompareNatural);
             Directory.CreateDirectory(Path.Combine(resource.gfs0p25RawDataDB, year, month, day, _run, "3hr", "SNOW"));
             foreach(var f in files)
                 File.Copy(f.FullName, Path.Combine(resource.gfs0p25RawDataDB, year, month, day, _run, "3hr", "SNOW", f.Name));
             Directory.CreateDirectory(Path.Combine(resource.gfs0p25RawDataDB, year, month, day, _run, "3hr", "SOIL"));
             files = new DirectoryInfo(resource.GFS0p25TiffDirSOILW).GetFiles().Select(fn => new FileInfo(fn.FullName)).OrderBy(f => f.Name).ToArray();
+            Array.Sort(files, ATG.atgMethods.CompareNatural);
             foreach (var f in files)
                 File.Copy(f.FullName, Path.Combine(resource.gfs0p25RawDataDB, year, month, day, _run, "3hr", "SOIL", f.Name));
 

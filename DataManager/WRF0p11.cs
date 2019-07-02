@@ -27,7 +27,8 @@ namespace DataManager
                     year, month, day, _run, "3hr", "CumulicativeRaster3hr"), true);
             Directory.CreateDirectory(Path.Combine(resource.wrfRawDB, "ensemble",
                     year, month, day, _run, "3hr", "CumulicativeRaster3hr"));
-            FileInfo[] inputs = new DirectoryInfo(Path.Combine(resource.wrfRawDB,"ensemble", year, month, day, _run,"3hr", "RAIN")).GetFiles("*.tif").Select(fn => new FileInfo(fn.FullName)).OrderBy(f => f.Name).ToArray();
+            FileInfo[] inputs = new DirectoryInfo(Path.Combine(resource.wrfRawDB,"ensemble", year, month, day, _run,"3hr", "RAIN")).GetFiles("*.tif").ToArray();
+            Array.Sort(inputs, ATG.atgMethods.CompareNatural);
             List<string> sumInputs = new List<string>();
             for (int i = 1; i < inputs.Count()+1; i++)
             {
@@ -52,6 +53,7 @@ namespace DataManager
             Directory.CreateDirectory(Path.Combine(resource.wrfRawDB, "ensemble",
                     year, month, day, _run, "3hr", "CumulicativeRaster3hrAPCP"));
             FileInfo[] inputs = new DirectoryInfo(Path.Combine(resource.wrfRawDB, "ensemble", year, month, day, _run, "3hr", "APCP")).GetFiles("*.tif").Select(fn => new FileInfo(fn.FullName)).OrderBy(f => f.Name).ToArray();
+            Array.Sort(inputs, ATG.atgMethods.CompareNatural);
             List<string> sumInputs = new List<string>();
             for (int i = 1; i < inputs.Count() + 1; i++)
             {
@@ -85,7 +87,9 @@ namespace DataManager
             for (int j = 0; j < 4; j++)
             {
                 FileInfo[] tempFiles = new DirectoryInfo(wrfModelsTEMP[j]).GetFiles("*.tif").Select(fn => new FileInfo(fn.FullName)).OrderBy(f => f.Name).ToArray();
+                Array.Sort(tempFiles, ATG.atgMethods.CompareNatural);
                 FileInfo[] apcpFiles = new DirectoryInfo(wrfModelsAPCP[j]).GetFiles("*.tif").Select(fn => new FileInfo(fn.FullName)).OrderBy(f => f.Name).ToArray();
+                Array.Sort(apcpFiles, ATG.atgMethods.CompareNatural);
                 var splitedName = tempFiles[0].Name.Split('-');
                 var modelName = splitedName[0];
                 if (Directory.Exists((Path.Combine(resource.wrfRawDB, modelName, year, month, day, _run, "3hr", "RAIN"))))
@@ -137,6 +141,7 @@ namespace DataManager
             for(int i = 0; i < 4; i ++)
             {
                 FileInfo[] inputFiles = new DirectoryInfo(wrfModelsTEMP[i]).GetFiles("*.tif").Select(fn => new FileInfo(fn.FullName)).OrderBy(f => f.Name).ToArray();
+                Array.Sort(inputFiles, ATG.atgMethods.CompareNatural);
                 var splitedName = inputFiles[0].Name.Split('-');
                 var modelName = splitedName[0];
                 DateTime represetedTime = new DateTime(Convert.ToInt16(year), Convert.ToInt16(month), Convert.ToInt16(day), Convert.ToInt16(_run), 0, 0);
@@ -172,6 +177,7 @@ namespace DataManager
             for (int i = 0; i < 4; i++)
             {
                 FileInfo[] inputFiles = Directory.GetFiles(wrfModelsAPCP[i], "*.tif").Select(fn => new FileInfo(fn)).OrderBy(f => f.Name).ToArray();
+                Array.Sort(inputFiles, ATG.atgMethods.CompareNatural);
                 var splitedName = inputFiles[0].Name.Split('-');
                 var modelName = splitedName[0];
                 DateTime represetedTime = new DateTime(Convert.ToInt16(year), Convert.ToInt16(month), Convert.ToInt16(day), Convert.ToInt16(_run), 0, 0);
@@ -211,6 +217,7 @@ namespace DataManager
             for(int i = 0; i < 4; i ++)
             {
                 FileInfo[] files = new DirectoryInfo(wrfModelsSNOW[i]).GetFiles("*.tif").Select(fn => new FileInfo(fn.FullName)).OrderBy(f => f.Name).ToArray();
+                Array.Sort(files, ATG.atgMethods.CompareNatural);
                 var splitedName = files[0].Name.Split('-');
                 var modelName = splitedName[0];
                 if (Directory.Exists(Path.Combine(resource.wrfRawDB, modelName, year, month, day, _run, "3hr", "SNOW")))
@@ -224,6 +231,7 @@ namespace DataManager
                     Directory.Delete(Path.Combine(resource.wrfRawDB, modelName, year, month, day, _run, "3hr", "SOIL"), true);
                 Directory.CreateDirectory(Path.Combine(resource.wrfRawDB, modelName, year, month, day, _run, "3hr", "SOIL"));
                 files = new DirectoryInfo(wrfModelsSOIL[i]).GetFiles("*.tif").Select(fn => new FileInfo(fn.FullName)).OrderBy(f => f.Name).ToArray();
+                Array.Sort(files, ATG.atgMethods.CompareNatural);
 
                 foreach (var f in files)
                     File.Copy(f.FullName, Path.Combine(resource.wrfRawDB, modelName, year, month, day, _run, "3hr", "SOIL", f.Name));
@@ -252,6 +260,7 @@ namespace DataManager
             for (int i = 0; i < 4; i ++)
             {
                 FileInfo[] files = new DirectoryInfo(Path.Combine(resource.wrfRawDB, wrfModels[i], year, month, day, _run, "3hr","RAIN")).GetFiles("*.tif").Select(fn => new FileInfo(fn.FullName)).OrderBy(f => f.Name).ToArray();
+                Array.Sort(files, ATG.atgMethods.CompareNatural);
                 for (int j = 0; j <= (files.Length / 8) - 1; j ++)
                 {
                     List<string> input = new List<string>();
@@ -291,6 +300,7 @@ namespace DataManager
             for (int i = 0; i < 4; i++)
             {
                 FileInfo[] files = new DirectoryInfo(Path.Combine(resource.wrfRawDB, wrfModels[i], year, month, day, _run, "3hr", "APCP")).GetFiles("*.tif").Select(fn => new FileInfo(fn.FullName)).OrderBy(f => f.Name).ToArray();
+                Array.Sort(files, ATG.atgMethods.CompareNatural);
                 for (int j = 0; j <= (files.Length / 8) - 1; j++)
                 {
                     List<string> input = new List<string>();
@@ -331,6 +341,7 @@ namespace DataManager
             for (int i = 0; i < 4; i++)
             {
                 FileInfo[] files = new DirectoryInfo(Path.Combine(resource.wrfRawDB, wrfModels[i], year, month, day, _run, "3hr", "RAIN")).GetFiles("*.tif").Select(fn => new FileInfo(fn.FullName)).OrderBy(f => f.Name).ToArray();
+                Array.Sort(files, ATG.atgMethods.CompareNatural);
                 for (int j = 0; j <= (files.Length / 4) - 1; j++)
                 {
                     List<string> input = new List<string>();
@@ -371,6 +382,7 @@ namespace DataManager
             for (int i = 0; i < 4; i++)
             {
                 FileInfo[] files = new DirectoryInfo(Path.Combine(resource.wrfRawDB, wrfModels[i], year, month, day, _run, "3hr", "APCP")).GetFiles("*.tif").Select(fn => new FileInfo(fn.FullName)).OrderBy(f => f.Name).ToArray();
+                Array.Sort(files, ATG.atgMethods.CompareNatural);
                 for (int j = 0; j <= (files.Length / 4) - 1; j++)
                 {
                     List<string> input = new List<string>();
@@ -408,6 +420,7 @@ namespace DataManager
                 Path.Combine(resource.wrfRawDB,"ensemble", currnetDate.AddDays(-1).Year.ToString()
                 , twoDigitNumber(currnetDate.AddDays(-1).Month)
                 , twoDigitNumber(currnetDate.AddDays(-1).Day), _run, "3hr", variable), "*.tif").Select(fn => new FileInfo(fn)).OrderBy(f => f.Name).ToArray();
+            Array.Sort(inputFiles, ATG.atgMethods.CompareNatural);
             int index = 0;
             if (Directory.Exists(Path.Combine(resource.wrfRawDB,"ensemble", currnetDate.AddDays(-1).Year.ToString()
                 , twoDigitNumber(currnetDate.AddDays(-1).Month)

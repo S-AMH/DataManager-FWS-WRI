@@ -378,9 +378,39 @@
     <value>C:\FWS\DB\WebGIS\UploadWRF-APCP.py</value>
   </data>
   <data name="testUploadWRF" xml:space="preserve">
-    <value>C:\FWS\DB\WebGIS-test\UploadWRF.py</value>
+    <value>C:\FWS\DB\WebGIS\UploadWRF.py</value>
   </data>
   <data name="testUploadGFS" xml:space="preserve">
-    <value>C:\FWS\DB\WebGIS-test\UploadGFS.py</value>
+    <value>C:\FWS\DB\WebGIS\UploadGFS.py</value>
+  </data>
+  <data name="ICON_Grb2" xml:space="preserve">
+    <value>\\10.0.0.146\Share\ICON-O</value>
+  </data>
+  <data name="ICON_ProccesedDB" xml:space="preserve">
+    <value>C:\FWS\DB\processedData\ICON\0.125</value>
+  </data>
+  <data name="ICON_RawDB" xml:space="preserve">
+    <value>C:\FWS\DB\rawData\ICON\0.125</value>
+  </data>
+  <data name="ICON_Tiff" xml:space="preserve">
+    <value>C:\IranFWS\DataManager\icon\</value>
+  </data>
+  <data name="emailAddresses" xml:space="preserve">
+    <value>C:\IranFWS\SiteUpdateNotification.txt</value>
+  </data>
+  <data name="emailBody" xml:space="preserve">
+    <value>C:\FWS\DB\tmpFiles\notificationBody.txt</value>
+  </data>
+  <data name="CurrentICONDateAndRun" xml:space="preserve">
+    <value>C:\FWS\DB\tmpFiles\CurrentIconDateAndRun.txt</value>
+  </data>
+  <data name="testUploadICON" xml:space="preserve">
+    <value>C:\FWS\DB\WebGIS\UploadICON.py</value>
+  </data>
+  <data name="ICON_DownloadedFiles" xml:space="preserve">
+    <value>\\10.0.0.146\Share\ICON-I</value>
+  </data>
+  <data name="IconFlag" xml:space="preserve">
+    <value>C:\FWS\DB\tmpFiles\IconFlag</value>
   </data>
 </root>

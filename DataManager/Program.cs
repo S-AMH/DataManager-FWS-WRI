@@ -38,9 +38,11 @@ namespace DataManager
             Ogr.RegisterAll();
             Gdal.PushErrorHandler("CPLQuietErrorHandle");
             Gdal.SetErrorHandler("CPLQuietErrorHandle");
+
+
             try
             {
-                updateHandlerWRF.updateDB();
+                bool result = updateHandlerWRF.updateDB();
             }
             catch(Exception e)
             {
@@ -55,6 +57,39 @@ namespace DataManager
             catch(Exception e)
             {
                 Console.WriteLine("Error Executing GFS0p13 process...");
+                Console.WriteLine("following Error occured: " + e.Message);
+                Console.WriteLine(e.StackTrace);
+            }
+            try
+            {
+                StreamReader r = new StreamReader(resource.IconFlag);
+                string str = r.ReadLine();
+                r.Close();
+                r.Dispose();
+                if (str == "1")
+                    throw new Exception("Icon Is Currently Downloading... retry in few minutes.");
+                else
+                {
+                    r = new StreamReader(resource.CurrentICONDateAndRun);
+                    str = r.ReadLine();
+                    r.Close();
+                    r.Dispose();
+                    Console.WriteLine(str);
+                    Console.WriteLine(str.Substring(0, 8) + " : " + str.Substring(str.Length - 2, 2));
+                    StreamWriter sw = new StreamWriter(resource.IconFlag);
+                    sw.Write("1");
+                    sw.Close();
+                    sw.Dispose();
+                    UpdateHandlerICON.updateDB(str.Substring(0, 8), str.Substring(str.Length - 2, 2));
+                    sw = new StreamWriter(resource.IconFlag);
+                    sw.Write("0");
+                    sw.Close();
+                    sw.Dispose();
+                }
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine("Error Executing ICON process...");
                 Console.WriteLine("following Error occured: " + e.Message);
                 Console.WriteLine(e.StackTrace);
             }

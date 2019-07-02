@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Threading;
+using System.Globalization;
 
 namespace DataManager
 {
@@ -117,6 +118,9 @@ namespace DataManager
 
             Console.WriteLine("Download Query Updated.");
 
+            if (downloadQueries.Count == 0)
+                return false;
+
             while(downloadQueries.Count > 0)
             {
                 int downloadStatus = 0;
@@ -201,7 +205,8 @@ namespace DataManager
                     Directory.Delete(outAdress, true);
                 Directory.CreateDirectory(outAdress);
                 DirectoryInfo dirinfo = new DirectoryInfo(resource.GFS0p13InitDownloadOutputDir);
-                FileInfo[] files = dirinfo.GetFiles().Select(fn => new FileInfo(fn.FullName)).OrderBy(f => f.Name).ToArray();
+                FileInfo[] files = dirinfo.GetFiles().ToArray();
+                Array.Sort(files, ATG.atgMethods.CompareNatural);
                 string tmp = Path.Combine(outAdress, files[0].Name + "-0-0.1.tiff");
                 Tuple<string, string> tmp2 = new Tuple<string, string>(files[0].FullName, tmp);
                 Queue<Tuple<string, string>> amir = new Queue<Tuple<string, string>>();
@@ -284,20 +289,19 @@ namespace DataManager
 
 
                 Console.WriteLine("Uploading GFS Model To SQL Server: \n \t Status: Started.");
-                uploadGFS(queryDate[0], queryDate[1]);
-                publishGFS();
+                //uploadGFS(queryDate[0], queryDate[1]);
+
 
                 Console.WriteLine("Updating Download And Process Log Files: \n \t Status: Started.");
                 StreamWriter obj_writer = new StreamWriter(resource.uploadLog, true);
                 obj_writer.WriteLine(queryDate[0] + "-" + queryDate[1]);
                 obj_writer.Close();
                 Console.WriteLine("Updating Download And Process Log Files: \n \t Status: Finished.");
-                uploadGFS(queryDate[0], queryDate[1], "APCP");
+                //uploadGFS(queryDate[0], queryDate[1], "APCP");
+                //publishGFS();
 
                 Console.WriteLine("Publishing Changes to web...");
-                publishGFS("APCP");
-
-
+                //publishGFS("APCP");
 
                 obj_writer = new StreamWriter(resource.downloadQuery);
                 foreach (var f in downloadQueries)
@@ -306,8 +310,32 @@ namespace DataManager
                 obj_writer = new StreamWriter(resource.DownloadLog, true);
                 obj_writer.WriteLine(queryDate[0] + "-" + queryDate[1]);
                 obj_writer.Close();
-                Console.WriteLine("Running TEST GFS UPLOAD...");
+                //Console.WriteLine("Running TEST GFS UPLOAD...");
                 testUploadGFS(queryDate[0], queryDate[1]);
+
+                List<string> emails = new List<string>();
+                StreamReader r = new StreamReader(resource.emailAddresses);
+                while (r.Peek() != -1)
+                    emails.Add(r.ReadLine());
+                r.Close();
+                r = new StreamReader(resource.emailBody);
+                string body = r.ReadToEnd();
+                int year = Convert.ToInt32(queryDate[0].Substring(0, 4));
+                int month = Convert.ToInt32(queryDate[0].Substring(4, 2));
+                int day = Convert.ToInt32(queryDate[0].Substring(6, 2));
+                int hour = Convert.ToInt32(queryDate[1]);
+                PersianCalendar pc = new PersianCalendar();
+                DateTime date1 = new DateTime(year, month, day, hour, 0, 0, DateTimeKind.Utc);
+                date1 = date1.ToLocalTime();
+
+                string title = "GFS به روزرسانی سامانه هشدار سیل" + pc.GetYear(date1) + "/" + pc.GetMonth(date1) + "/" + pc.GetDayOfMonth(date1) + " ساعت " + pc.GetHour(date1) + ":" + pc.GetMinute(date1);
+
+                body = body.Replace("#####", pc.GetYear(date1) + "/" + pc.GetMonth(date1) + "/" + pc.GetDayOfMonth(date1));
+                body = body.Replace("$$", pc.GetHour(date1) + ":" + pc.GetMinute(date1));
+                body = body.Replace("^^", "GFS");
+                //body = body.Replace("**", "WRF");
+                SendEmail.sendEmail(emails, title, body, true);
+
 
             }
 

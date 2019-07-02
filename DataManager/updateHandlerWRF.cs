@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -69,7 +70,7 @@ namespace DataManager
         public static bool updateDB()
         {
             Console.WriteLine("Updating WRF Database Process Started.");
-            FileInfo[] files = new DirectoryInfo(resource.wrfTempDir).GetFiles("*.tif", SearchOption.AllDirectories).Select(fn => new FileInfo(fn.FullName)).OrderBy(f => f.Name).ToArray(); ;
+            FileInfo[] files = new DirectoryInfo(resource.wrfTempDir).GetFiles("*.tif", SearchOption.AllDirectories).ToArray();
             //if (files.Count() > 275)
             //{
             //    for (int i = 0; i < files.Count()-275; i++)
@@ -78,9 +79,11 @@ namespace DataManager
             //}
             //else
             //    return true;
-            if (files.Count() != 275)
-                return true;
-            files = new DirectoryInfo(resource.wrfTiffDirEnsembleAPCP).GetFiles("*.tif").Select(fn => new FileInfo(fn.FullName)).OrderBy(f => f.Name).ToArray(); ;
+            if (files.Count() != 404)
+                return false;
+            files = new DirectoryInfo(resource.wrfTiffDirEnsembleAPCP).GetFiles("*.tif").ToArray();
+            Array.Sort(files, ATG.atgMethods.CompareNatural);
+
             string[] tmp = files[0].Name.Split('-');
             string date = tmp[1].Substring(3, 10);
             string run = date.Substring(date.Length-2, 2);
@@ -183,30 +186,52 @@ namespace DataManager
             SagaProcess.zonalForPolygonsWRF(date, run, "APCP");
 
             Console.WriteLine("Uploading WRF Model To SQL Server: \n \t Status: Started.");
-            uploadWRF(date, run);
+            //uploadWRF(date, run);
             Console.WriteLine("Uploading WRF Model To SQL Server: \n \t Status: Finished.");
             Console.WriteLine("Uploading WRF Model To SQL Server: \n \t Status: Started.");
-            uploadWRF(date, run, "APCP");
+            //uploadWRF(date, run, "APCP");
             Console.WriteLine("Uploading GFS Model To SQL Server: \n \t Status: Finished.");
 
             Console.WriteLine("Publishing New Services: \n \t Status:  Started.");
-            publishWRF();
+            //publishWRF();
             Console.WriteLine("Publishing New Services: \n \t Status:  Started.");
-            publishWRF("APCP");
+            //publishWRF("APCP");
 
 
 
-            FileInfo[] tiffFiles = new DirectoryInfo(resource.wrfTempDir).GetFiles("*.tif", SearchOption.AllDirectories).Select(fn => new FileInfo(fn.FullName)).OrderBy(f => f.Name).ToArray();
+            FileInfo[] tiffFiles = new DirectoryInfo(resource.wrfTempDir).GetFiles("*.tif", SearchOption.AllDirectories).ToArray();
 
             foreach (var f in tiffFiles)
                 File.Delete(f.FullName);
 
-            FileInfo[] xmlFiles = new DirectoryInfo(resource.wrfTempDir).GetFiles("*.tif", SearchOption.AllDirectories).Select(fn => new FileInfo(fn.FullName)).OrderBy(f => f.Name).ToArray();
+            FileInfo[] xmlFiles = new DirectoryInfo(resource.wrfTempDir).GetFiles("*.tif", SearchOption.AllDirectories).ToArray();
 
             foreach (var f in xmlFiles)
                 File.Delete(f.FullName);
-            Console.WriteLine("TEST UPLOAD WRF...");
+            //Console.WriteLine("TEST UPLOAD WRF...");
             TestUploadWRF(date, run);
+            List<string> emails = new List<string>();
+            StreamReader r = new StreamReader(resource.emailAddresses);
+            while (r.Peek() != -1)
+                emails.Add(r.ReadLine());
+            r.Close();
+            r = new StreamReader(resource.emailBody);
+            string body = r.ReadToEnd();
+            int year = Convert.ToInt32(date.Substring(0, 4));
+            int month = Convert.ToInt32(date.Substring(4, 2));
+            int day = Convert.ToInt32(date.Substring(6, 2));
+            int hour = Convert.ToInt32(run);
+            PersianCalendar pc = new PersianCalendar();
+            DateTime date1 = new DateTime(year, month, day, hour, 0, 0, DateTimeKind.Utc);
+            date1 = date1.ToLocalTime();
+
+            string title = "WRF به روزرسانی سامانه هشدار سیل" + pc.GetYear(date1) + "/" + pc.GetMonth(date1) + "/" + pc.GetDayOfMonth(date1) + " ساعت " + pc.GetHour(date1) + ":" + pc.GetMinute(date1);
+
+            body = body.Replace("#####", pc.GetYear(date1) + "/" + pc.GetMonth(date1) + "/" + pc.GetDayOfMonth(date1));
+            body = body.Replace("$$", pc.GetHour(date1) + ":" + pc.GetMinute(date1));
+            body = body.Replace("^^", "WRF");
+            //body = body.Replace("**", "WRF");
+            SendEmail.sendEmail(emails,title,body, true);
             string[] configNames = { "ensemble", "ferrier", "lin", "wsm6" };
 
             return true;

@@ -115,10 +115,10 @@ namespace DataManager
                                     var FirstScanline = new float[sizeX];
                                     var SecondScanline = new float[sizeX];
 
-                                    var cplReturn = bandFirst.ReadRaster(0, i, sizeX-1, 1, FirstScanline, sizeX, 1, 0, 0);
+                                    var cplReturn = bandFirst.ReadRaster(0, i, sizeX, 1, FirstScanline, sizeX, 1, 0, 0);
                                     if (cplReturn != CPLErr.CE_None)
                                         throw new Exception("band.ReadRaster failed: " + Gdal.GetLastErrorMsg());
-                                    cplReturn = bandSecond.ReadRaster(0, i, sizeX-1, 1, SecondScanline, sizeX, 1, 0, 0);
+                                    cplReturn = bandSecond.ReadRaster(0, i, sizeX, 1, SecondScanline, sizeX, 1, 0, 0);
                                     if (cplReturn != CPLErr.CE_None)
                                         throw new Exception("band.ReadRaster failed: " + Gdal.GetLastErrorMsg());
                                     var outputLine = new List<float>();
@@ -137,7 +137,7 @@ namespace DataManager
                                             pixelValue = noData;
                                         outputLine.Add((float)pixelValue);
                                     }
-                                    cplReturn = bandOut.WriteRaster(0, i, sizeX-1, 1, outputLine.ToArray(), sizeX, 1, 0, 0);
+                                    cplReturn = bandOut.WriteRaster(0, i, sizeX, 1, outputLine.ToArray(), sizeX, 1, 0, 0);
                                     if (cplReturn != CPLErr.CE_None)
                                         throw new Exception("band.WriteRaster failed: " + Gdal.GetLastErrorMsg());
                                     bandOut.FlushCache();
@@ -157,8 +157,6 @@ namespace DataManager
         }
         public static bool convertAPCP2RAIN(string inputApcp, string inputTemp, string output)
         {
-            
-
             try
             {
                 using (var dvr = Gdal.GetDriverByName("GTiff"))
@@ -358,7 +356,7 @@ namespace DataManager
 
                     using (var outBand = newDataset.GetRasterBand(1))
                     {
-                        double noData = -999000000;
+                        double noData = -999999999;
                         outBand.SetNoDataValue(noData);
                         var sizeX = outBand.XSize;
                         var numLines = outBand.YSize;
